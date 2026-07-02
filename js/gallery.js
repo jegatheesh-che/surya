@@ -65,8 +65,8 @@ function getPhotoAltText(category) {
 
 // Fallback data if Firebase is unconfigured
 const fallbackData = [
-    { src: 'assets/images/Copy of DSC00343.jpg', category: 'weddings',  alt: 'Wedding couple in a golden-hour outdoor portrait' },
-    { src: 'assets/images/Copy of DSC00602.jpg', category: 'portraits', alt: 'Professional portrait session with natural light' },
+    { src: 'assets/images/Copy%20of%20DSC00343.jpg', category: 'weddings',  alt: 'Wedding couple in a golden-hour outdoor portrait' },
+    { src: 'assets/images/Copy%20of%20DSC00602.jpg', category: 'portraits', alt: 'Professional portrait session with natural light' },
     { src: 'assets/images/DSC00147.jpg',          category: 'maternity', alt: 'Maternity portrait in a soft natural outdoor setting' },
     { src: 'assets/images/DSC02092.jpg',          category: 'lifestyle', alt: 'Candid lifestyle moment captured by Surya Photography' }
 ];

@@ -838,23 +838,13 @@ tabBtns.forEach(btn => {
         const targetId = btn.dataset.tab;
         
         tabContents.forEach(c => {
-            if(c.classList.contains('active')) {
-                c.classList.remove('active');
-                c.classList.add('fade-out');
-                setTimeout(() => {
-                    c.classList.remove('fade-out');
-                    if (c.id === targetId) {
-                        c.classList.add('active', 'fade-in');
-                        setTimeout(() => c.classList.remove('fade-in'), 300);
-                    }
-                }, 300);
-            } else if (c.id === targetId) {
-                setTimeout(() => {
-                    c.classList.add('active', 'fade-in');
-                    setTimeout(() => c.classList.remove('fade-in'), 300);
-                }, 300);
-            }
+            c.classList.remove('active', 'fade-out', 'fade-in');
         });
+
+        const target = document.getElementById(targetId);
+        if(target) {
+            target.classList.add('active');
+        }
     });
 });
 

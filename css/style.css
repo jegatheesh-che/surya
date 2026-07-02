@@ -1,14 +1,26 @@
 @font-face {
     font-family: 'Erigo';
-    src: url('../assets/fonts/Erigo.ttf') format('truetype');
+    src: url('../assets/fonts/Erigo.woff2') format('woff2'),
+         url('../assets/fonts/Erigo.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap; /* Prevent FOIT — text renders immediately with fallback font */
 }
 @font-face {
     font-family: 'Camping Holiday';
-    src: url('../assets/fonts/Camping Holiday.ttf') format('truetype');
+    src: url('../assets/fonts/Camping Holiday.woff2') format('woff2'),
+         url('../assets/fonts/Camping Holiday.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Simple Bold';
+    src: url('../assets/fonts/Simple Bold.woff2') format('woff2'),
+         url('../assets/fonts/Simple Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
 }
 
 body { background-color: #ffffff; color: #2b2024; }
@@ -17,9 +29,6 @@ body { background-color: #ffffff; color: #2b2024; }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-@font-face {
-    font-family: 'Simple Bold';
-    src: url('../assets/fonts/Simple Bold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
+/* Contact link hover */
+.contact-link { color: #2b2024; transition: color 0.3s ease; display: block; }
+.contact-link:hover { color: #fd0053; }

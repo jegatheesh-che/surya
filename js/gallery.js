@@ -4,11 +4,16 @@ import {
     collection, 
     getDocs, 
     query, 
-    orderBy 
+    orderBy
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // ==========================================
-// CONFIGURATION (PLACEHOLDERS)
+// CONFIGURATION
+// NOTE: Firebase client configuration is intentionally public.
+// Security is enforced server-side via Firebase Authentication and
+// Firestore Security Rules. Read-only gallery access is by design;
+// all writes require an authenticated admin session.
+// See: https://firebase.google.com/docs/projects/api-keys
 // ==========================================
 const firebaseConfig = {
     apiKey: "AIzaSyADbXVx3b_DtClpoRGcy75e_Iq9bI8FCgI",
@@ -43,14 +48,40 @@ const bentoPattern = [
 
 let galleryData = [];
 let categoriesList = [];
+let lastFocusedGalleryItem = null; // Tracks trigger element for focus restoration after lightbox closes
+
+// Descriptive alt text mapped by photography category
+const categoryAltText = {
+    'weddings':      'Wedding ceremony and couple photography by Surya Photography',
+    'portraits':     'Professional portrait photography session by Surya Photography',
+    'events':        'Cultural event and celebration photography by Surya Photography',
+    'maternity':     'Maternity portrait session by Surya Photography',
+    'lifestyle':     'Lifestyle and candid photography by Surya Photography',
+    'uncategorized': 'Photography by Surya Photography'
+};
+function getPhotoAltText(category) {
+    return categoryAltText[category] || `${category} photography by Surya Photography`;
+}
 
 // Fallback data if Firebase is unconfigured
 const fallbackData = [
-    { src: 'assets/images/Copy of DSC00343.jpg', category: 'weddings' },
-    { src: 'assets/images/Copy of DSC00602.jpg', category: 'portraits' },
-    { src: 'assets/images/DSC00147.jpg', category: 'maternity' },
-    { src: 'assets/images/DSC02092.jpg', category: 'lifestyle' }
+    { src: 'assets/images/Copy of DSC00343.jpg', category: 'weddings',  alt: 'Wedding couple in a golden-hour outdoor portrait' },
+    { src: 'assets/images/Copy of DSC00602.jpg', category: 'portraits', alt: 'Professional portrait session with natural light' },
+    { src: 'assets/images/DSC00147.jpg',          category: 'maternity', alt: 'Maternity portrait in a soft natural outdoor setting' },
+    { src: 'assets/images/DSC02092.jpg',          category: 'lifestyle', alt: 'Candid lifestyle moment captured by Surya Photography' }
 ];
+
+// Module-scoped IntersectionObserver — created once, reused on every renderGallery() call.
+// Calling observer.disconnect() before each render releases old references
+// and prevents observer accumulation across filter changes.
+const galleryRevealObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            galleryRevealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
 
 async function initGallery() {
     try {
@@ -76,6 +107,7 @@ async function initGallery() {
             const data = doc.data();
             const cat = categoriesList.find(c => c.id === data.category_id);
             galleryData.push({
+                id: doc.id,
                 src: data.imageUrl,
                 thumb: data.thumbnailUrl || data.imageUrl,
                 type: data.type || 'image',
@@ -89,6 +121,30 @@ async function initGallery() {
     }
 
     if (galleryGrid) {
+        // Clear the static HTML fallback now that JS is running and
+        // will render images dynamically from Firebase (or fallback data).
+        // The static images in gallery.html only exist for SEO/non-JS users.
+        galleryGrid.innerHTML = '';
+
+        // Event delegation: single listener replaces per-item inline onclick handlers
+        galleryGrid.addEventListener('click', (e) => {
+            const item = e.target.closest('[data-src]');
+            if (item) {
+                lastFocusedGalleryItem = item;
+                openLightbox(item.dataset.src, item.dataset.type || 'image');
+            }
+        });
+        // Keyboard support: Enter/Space opens lightbox for keyboard-only users
+        galleryGrid.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const item = e.target.closest('[data-src]');
+                if (item) {
+                    e.preventDefault();
+                    lastFocusedGalleryItem = item;
+                    openLightbox(item.dataset.src, item.dataset.type || 'image');
+                }
+            }
+        });
         renderGallery();
         setupFilterListeners();
     }
@@ -115,11 +171,13 @@ function renderGallery(filter = 'all') {
         if (filter === 'all' || item.category === filter) {
             const spanClass = bentoPattern[renderIndex % bentoPattern.length];
             const isVideo = item.type === 'video';
+            const altText = item.alt || getPhotoAltText(item.category);
+
             const itemHtml = `
-                <div class="bento-item photo-reveal ${spanClass}" style="transition-delay: ${delay}ms;" onclick="openLightbox('${item.src}', '${item.type}')">
-                    <img src="${item.thumb || item.src}" alt="${item.category}" loading="lazy">
-                    ${isVideo ? '<div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors"><div class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white shadow-lg backdrop-filter"><i class="fas fa-play text-lg ml-1"></i></div></div>' : ''}
-                    <div class="overlay"></div>
+                <div class="bento-item photo-reveal ${spanClass}" style="transition-delay: ${delay}ms;" data-id="${item.id}" data-src="${item.src}" data-type="${item.type || 'image'}" role="button" tabindex="0" aria-label="View photo">
+                    <img src="${item.thumb || item.src}" alt="${altText}" loading="lazy">
+                    ${isVideo ? '<div class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/40 transition-colors" aria-hidden="true"><div class="w-12 h-12 flex items-center justify-center rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white shadow-lg backdrop-filter"><i class="fas fa-play text-lg ml-1" aria-hidden="true"></i></div></div>' : ''}
+                    <div class="overlay" aria-hidden="true"></div>
                 </div>
             `;
             galleryGrid.insertAdjacentHTML('beforeend', itemHtml);
@@ -128,18 +186,11 @@ function renderGallery(filter = 'all') {
         }
     });
     
-    // Lazy loading animation observer
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-    
+    // Disconnect previous observations to prevent accumulation across filter changes,
+    // then re-observe the newly rendered elements.
+    galleryRevealObserver.disconnect();
     setTimeout(() => {
-        document.querySelectorAll('.photo-reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.photo-reveal').forEach(el => galleryRevealObserver.observe(el));
     }, 100);
 }
 
@@ -182,8 +233,11 @@ window.openLightbox = function(src, type = 'image') {
         
         lightbox.classList.remove('hidden');
         lightbox.classList.add('flex');
+        lightbox.setAttribute('aria-hidden', 'false');
         setTimeout(() => {
             lightbox.style.opacity = '1';
+            // Move focus to close button for keyboard and screen-reader users
+            if (lightboxClose) lightboxClose.focus();
         }, 10);
     }
 }
@@ -191,6 +245,7 @@ window.openLightbox = function(src, type = 'image') {
 window.closeLightbox = function() {
     if (lightbox) {
         lightbox.style.opacity = '0';
+        lightbox.setAttribute('aria-hidden', 'true');
         setTimeout(() => {
             lightbox.classList.add('hidden');
             lightbox.classList.remove('flex');
@@ -199,6 +254,8 @@ window.closeLightbox = function() {
                 lightboxVideo.pause();
                 lightboxVideo.src = '';
             }
+            // Restore focus to the gallery item that triggered the lightbox
+            if (lastFocusedGalleryItem) lastFocusedGalleryItem.focus();
         }, 300);
     }
 }
@@ -206,5 +263,12 @@ window.closeLightbox = function() {
 if (lightboxClose) {
     lightboxClose.addEventListener('click', closeLightbox);
 }
+
+// Close lightbox on Escape key (WCAG 2.1 — 2.1.2 No Keyboard Trap)
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
+        closeLightbox();
+    }
+});
 
 initGallery();

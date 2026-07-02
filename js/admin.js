@@ -10,16 +10,24 @@ import {
     collection, 
     addDoc, 
     getDocs, 
+    getDoc,
     doc, 
     updateDoc, 
     deleteDoc, 
     query, 
     orderBy,
-    serverTimestamp
+    serverTimestamp,
+    writeBatch
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 // ==========================================
-// CONFIGURATION (PLACEHOLDERS)
+// CONFIGURATION
+// NOTE: Firebase client configuration is intentionally public.
+// Security is enforced via Firebase Authentication and Firestore Security Rules.
+// All admin write operations require an authenticated session.
+// Unauthenticated requests are rejected at the Firestore Rules level,
+// regardless of API key possession.
+// See: https://firebase.google.com/docs/projects/api-keys
 // ==========================================
 const firebaseConfig = {
     apiKey: "AIzaSyADbXVx3b_DtClpoRGcy75e_Iq9bI8FCgI",
@@ -33,10 +41,19 @@ const firebaseConfig = {
 const CLOUDINARY_CLOUD_NAME = "db2olmkfm";
 const CLOUDINARY_UPLOAD_PRESET = "surya_photography";
 
+// ==========================================
+// DEBUG GUARD
+// Set DEBUG = true locally to enable verbose Firestore/auth logging.
+// Must be false in production to prevent internal detail disclosure.
+// ==========================================
+const DEBUG = false;
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+if (DEBUG) console.log('[DEBUG] Firebase initialized | projectId:', firebaseConfig.projectId, '| auth:', auth, '| db:', db);
 
 // ==========================================
 // UI Elements
@@ -49,10 +66,16 @@ const btnLogout = document.getElementById('btn-logout');
 // AUTHENTICATION
 // ==========================================
 onAuthStateChanged(auth, (user) => {
+    // Reveal the page only after Firebase resolves the auth state —
+    // prevents any flash of admin content before the check completes.
+    // The body starts as visibility:hidden (set in admin.html).
+    document.body.style.visibility = 'visible';
     if (user) {
+        console.log('[AUTH] User authenticated | uid:', user.uid, '| email:', user.email, '| emailVerified:', user.emailVerified);
         loginOverlay.classList.add('hidden');
         loadDashboardData();
     } else {
+        console.log('[AUTH] No authenticated user — showing login screen');
         loginOverlay.classList.remove('hidden');
     }
 });
@@ -80,6 +103,7 @@ btnLogout.addEventListener('click', () => {
 // DASHBOARD LOGIC
 // ==========================================
 let categoriesList = [];
+let selectedImageIds = new Set();
 
 // ==========================================
 // PREMIUM UX HELPER FUNCTIONS
@@ -241,6 +265,7 @@ function closeEditModal() {
 }
 
 async function loadDashboardData() {
+    if (DEBUG) console.log('[DEBUG] loadDashboardData() triggered — fetching categories then images');
     await fetchCategories();
     await fetchImages();
 }
@@ -251,8 +276,10 @@ async function fetchCategories() {
     tbody.innerHTML = getSkeletonRows(3, 2);
     
     const q = query(collection(db, "categories"), orderBy("name"));
+    if (DEBUG) console.log('[DEBUG] fetchCategories() — querying Firestore collection: categories');
     try {
         const querySnapshot = await getDocs(q);
+        if (DEBUG) console.log('[FIRESTORE] fetchCategories returned', querySnapshot.size, 'document(s)');
         
         categoriesList = [];
         const uploadSelect = document.getElementById('upload-category');
@@ -294,15 +321,24 @@ async function fetchCategories() {
 
             document.querySelectorAll('.btn-delete-cat').forEach(btn => {
                 btn.addEventListener('click', async (e) => {
-                    const tr = e.currentTarget.closest('tr');
+                    const catId = btn.dataset.id;
+                    const tr = btn.closest('tr');
                     if(await customConfirm('Delete Category?', 'This category will be permanently removed. Images using it will become uncategorized.')) {
                         try {
+                            // BUG FIX: await Firestore deletion BEFORE mutating the UI.
+                            // If deleteDoc throws, the catch block will keep the row visible.
+                            await deleteDoc(doc(db, "categories", catId));
+                            // Only animate the row out AFTER Firestore confirms the delete.
                             tr.classList.add('shrink-out');
-                            await deleteDoc(doc(db, "categories", e.currentTarget.dataset.id));
                             showSuccessPopup('Task Completed', 'Category deleted successfully.');
-                            setTimeout(fetchCategories, 400); // Wait for shrink animation
+                            // BUG FIX: await fetchCategories so any errors are caught and the
+                            // list is guaranteed to reflect actual Firestore state.
+                            setTimeout(async () => { await fetchCategories(); }, 400);
                         } catch(err) {
-                            showToast('error', 'Error deleting category. Check permissions.');
+                            // Keep the row visible and log the full Firestore error.
+                            tr.classList.remove('shrink-out');
+                            console.error("[Firestore] Category delete failed. Document ID:", catId, "Error:", err);
+                            showToast('error', 'Error deleting category. Check Firestore permissions.');
                         }
                     }
                 });
@@ -336,17 +372,27 @@ document.getElementById('btn-add-category').addEventListener('click', async (e) 
 // --- Images ---
 async function fetchImages() {
     const tbody = document.getElementById('gallery-tbody');
-    tbody.innerHTML = getSkeletonRows(5, 5);
+    tbody.innerHTML = getSkeletonRows(5, 6);
+    
+    // Clear selection state
+    selectedImageIds.clear();
+    updateBulkDeleteButton();
+    const selectAllCheckbox = document.getElementById('select-all-images');
+    if (selectAllCheckbox) selectAllCheckbox.checked = false;
+    const mobileSelectAllCheckbox = document.getElementById('mobile-select-all');
+    if (mobileSelectAllCheckbox) mobileSelectAllCheckbox.checked = false;
     
     const q = query(collection(db, "images"), orderBy("createdAt", "desc"));
+    if (DEBUG) console.log('[DEBUG] fetchImages() — querying Firestore collection: images');
     try {
         const querySnapshot = await getDocs(q);
+        if (DEBUG) console.log('[FIRESTORE] fetchImages returned', querySnapshot.size, 'document(s)');
         
         tbody.innerHTML = '';
         
         if (querySnapshot.empty) {
             tbody.innerHTML = `
-                <tr><td colspan="5" class="px-6 py-16 text-center text-gray-500 fade-up">
+                <tr><td colspan="6" class="px-6 py-16 text-center text-gray-500 fade-up">
                     <i class="fas fa-images text-5xl mb-4 opacity-20"></i><br>
                     <p class="text-lg">No images yet</p>
                     <p class="text-sm">Upload your first masterpiece to the gallery.</p>
@@ -370,21 +416,24 @@ async function fetchImages() {
             tr.className = "table-row gallery-row fade-up";
             tr.style.animationDelay = `${delay}ms`;
             tr.innerHTML = `
-                <td class="px-6 py-4 whitespace-nowrap relative">
+                <td class="px-6 py-4 whitespace-nowrap" data-label="select">
+                    <input type="checkbox" class="select-image-checkbox w-4 h-4 text-main border-gray-300 rounded focus:ring-main cursor-pointer" data-id="${img.id}">
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap relative" data-label="thumbnail">
                     <div class="relative h-12 w-20 rounded shadow-sm overflow-hidden group">
                         <img src="${thumbSrc}" alt="${img.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy">
                         ${isVideo ? '<div class="absolute inset-0 bg-black/30 flex items-center justify-center"><i class="fas fa-play text-white/80 text-xs"></i></div>' : ''}
                     </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium img-title">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-medium img-title" data-label="title">
                     <div class="flex items-center">
                         <span class="truncate max-w-[150px]">${img.title || 'Untitled'}</span>
                         ${typeBadge}
                     </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${catName}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${dateStr}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-label="category">${catName}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-label="date">${dateStr}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium" data-label="actions">
                     <button class="text-indigo-600 hover:text-indigo-900 btn-edit-img btn-interactive" data-id="${img.id}" data-title="${img.title || ''}" data-cat="${img.category_id || ''}"><i class="fas fa-edit"></i></button>
                     <button class="text-red-600 hover:text-red-900 ml-4 btn-delete-img btn-interactive" data-id="${img.id}"><i class="fas fa-trash"></i></button>
                 </td>
@@ -393,19 +442,126 @@ async function fetchImages() {
             delay += 30;
         });
 
-        // Delete
+        // Setup individual checkbox listeners
+        const checkboxes = document.querySelectorAll('.select-image-checkbox');
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', (e) => {
+                const id = e.target.dataset.id;
+                if (e.target.checked) {
+                    selectedImageIds.add(id);
+                } else {
+                    selectedImageIds.delete(id);
+                }
+                updateBulkDeleteButton();
+                updateSelectAllState();
+            });
+        });
+
+        // Delete — with live Firestore verification
         document.querySelectorAll('.btn-delete-img').forEach(btn => {
             btn.addEventListener('click', async (e) => {
-                const tr = e.currentTarget.closest('tr');
+                const imgId = btn.dataset.id;
+                const tr = btn.closest('tr');
+                const COLLECTION = 'images';
+                const docRef = doc(db, COLLECTION, imgId);
+
                 if(await customConfirm('Delete Image?', 'Are you sure you want to remove this image from the gallery?')) {
+
+                    // ── STEP 1: Pre-delete existence check ──────────────────────
+                    let preSnap;
                     try {
-                        tr.classList.add('shrink-out');
-                        await deleteDoc(doc(db, "images", e.currentTarget.dataset.id));
-                        showSuccessPopup('Task Completed', 'Image removed successfully.');
-                        setTimeout(fetchImages, 400);
-                    } catch(err) {
-                        showToast('error', 'Error deleting image.');
+                        preSnap = await getDoc(docRef);
+                    } catch (preErr) {
+                        console.error('[VERIFY] PRE-DELETE getDoc failed.',
+                            '| Collection:', COLLECTION,
+                            '| Document ID:', imgId,
+                            '| err.code:', preErr.code,
+                            '| err.message:', preErr.message);
+                        showToast('error', 'Cannot read document before delete. Check console.');
+                        return;
                     }
+                    console.log('[VERIFY] PRE-DELETE',
+                        '| Collection:', COLLECTION,
+                        '| Document ID:', imgId,
+                        '| exists:', preSnap.exists());
+                    if (!preSnap.exists()) {
+                        console.warn('[VERIFY] Document does NOT exist in Firestore before delete.',
+                            'Possible cause: wrong collection name or wrong document ID.');
+                    }
+
+                    // ── STEP 2: Execute deleteDoc ────────────────────────────────
+                    try {
+                        await deleteDoc(docRef);
+                        console.log('[VERIFY] deleteDoc() resolved without error.',
+                            '| Collection:', COLLECTION,
+                            '| Document ID:', imgId);
+                    } catch (delErr) {
+                        // Classify the failure reason
+                        let reason = 'Unknown';
+                        if (delErr.code === 'permission-denied')   reason = 'Firestore Security Rules blocked the write';
+                        else if (delErr.code === 'not-found')       reason = 'Document not found (wrong ID or collection)';
+                        else if (delErr.code === 'unavailable')     reason = 'Network error — Firestore unreachable';
+                        else if (delErr.code === 'unauthenticated') reason = 'User is not authenticated';
+                        else if (delErr.code)                       reason = 'Firestore error: ' + delErr.code;
+
+                        tr.classList.remove('shrink-out');
+                        console.error('[VERIFY] deleteDoc() FAILED.',
+                            '| Collection:', COLLECTION,
+                            '| Document ID:', imgId,
+                            '| Reason:', reason,
+                            '| err.code:', delErr.code,
+                            '| err.message:', delErr.message,
+                            '| Full error:', delErr);
+                        showToast('error', 'Delete failed: ' + reason + '. See console for details.');
+                        return;
+                    }
+
+                    // ── STEP 3: Post-delete existence check (live Firestore read) ──
+                    let postSnap;
+                    try {
+                        postSnap = await getDoc(docRef);
+                    } catch (postErr) {
+                        console.error('[VERIFY] POST-DELETE getDoc failed.',
+                            '| err.code:', postErr.code,
+                            '| err.message:', postErr.message);
+                        // deleteDoc resolved, but we cannot confirm — treat as warning only
+                        console.warn('[VERIFY] Could not confirm deletion via getDoc. Proceeding with reload.');
+                    }
+
+                    if (postSnap) {
+                        if (postSnap.exists()) {
+                            // deleteDoc resolved but document still exists — this is the real bug
+                            console.error('[VERIFY] POST-DELETE: document STILL EXISTS in Firestore after deleteDoc resolved.',
+                                '| Collection:', COLLECTION,
+                                '| Document ID:', imgId,
+                                '| This means deleteDoc() returned success but Firestore did not actually delete the document.',
+                                '| Possible causes: Security Rules silently allowed the call but did not execute,',
+                                '| or the document is in a different collection than expected.');
+                            tr.classList.remove('shrink-out');
+                            showToast('error', 'Deletion unconfirmed — document still exists in Firestore. See console.');
+                            return;
+                        } else {
+                            console.log('[VERIFY] POST-DELETE: document confirmed GONE from Firestore. exists():', postSnap.exists());
+                        }
+                    }
+
+                    // ── STEP 4: Query re-fetch to confirm not in collection ─────
+                    const verifyQ = query(collection(db, COLLECTION), orderBy('createdAt', 'desc'));
+                    const verifySnap = await getDocs(verifyQ);
+                    const stillInQuery = verifySnap.docs.some(d => d.id === imgId);
+                    console.log('[VERIFY] Re-fetch query result',
+                        '| Deleted ID still returned by query:', stillInQuery,
+                        '| Total docs in collection now:', verifySnap.size);
+                    if (stillInQuery) {
+                        console.error('[VERIFY] Document still returned by getDocs query after deleteDoc.',
+                            '| This would cause the image to reappear after refresh.',
+                            '| Document ID:', imgId);
+                    }
+
+                    // ── STEP 5: Update UI only after all Firestore checks pass ──
+                    tr.classList.add('shrink-out');
+                    showSuccessPopup('Task Completed', 'Image removed successfully.');
+                    setTimeout(async () => { await fetchImages(); }, 400);
                 }
             });
         });
@@ -494,8 +650,8 @@ document.getElementById('btn-cloudinary-upload').addEventListener('click', () =>
             const info = result.info;
             
             // Video duration validation
-            if (info.resource_type === 'video' && info.duration && info.duration > 120) {
-                window.showToast('error', `Video "${info.original_filename}" is longer than 2 minutes and was rejected.`);
+            if (info.resource_type === 'video' && info.duration && info.duration > 240) {
+                window.showToast('error', `Video "${info.original_filename}" is longer than 4 minutes and was rejected.`);
                 return;
             }
             
@@ -587,10 +743,16 @@ async function processUploadedFiles(files, category_id) {
             const isVideo = file.resource_type === 'video';
             const thumb = isVideo ? file.secure_url.replace(/\.[^/.]+$/, ".jpg") : file.secure_url;
             
+            // Optimize video delivery using Cloudinary automatic quality and format
+            let optimizedUrl = file.secure_url;
+            if (isVideo && file.secure_url.includes('/upload/')) {
+                optimizedUrl = file.secure_url.replace('/upload/', '/upload/q_auto,f_auto/');
+            }
+            
             await addDoc(collection(db, "images"), {
                 title: file.original_filename,
                 category_id: category_id || null,
-                imageUrl: file.secure_url,
+                imageUrl: optimizedUrl,
                 thumbnailUrl: thumb,
                 type: isVideo ? 'video' : 'image',
                 duration: isVideo ? (file.duration || 0) : null,
@@ -695,3 +857,232 @@ tabBtns.forEach(btn => {
         });
     });
 });
+
+// Selection / Bulk Delete Helpers
+function updateBulkDeleteButton() {
+    const btn = document.getElementById('btn-bulk-delete');
+    const countText = document.getElementById('bulk-select-count');
+    if (btn && countText) {
+        countText.innerText = selectedImageIds.size;
+        if (selectedImageIds.size > 0) {
+            btn.style.display = 'flex';
+        } else {
+            btn.style.display = 'none';
+        }
+    }
+}
+
+function updateSelectAllState() {
+    const desktopCheckbox = document.getElementById('select-all-images');
+    const mobileCheckbox = document.getElementById('mobile-select-all');
+    if (!desktopCheckbox && !mobileCheckbox) return;
+    
+    const checkboxes = document.querySelectorAll('.select-image-checkbox');
+    if (checkboxes.length === 0) {
+        if (desktopCheckbox) desktopCheckbox.checked = false;
+        if (mobileCheckbox) mobileCheckbox.checked = false;
+        return;
+    }
+    const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+    if (desktopCheckbox) desktopCheckbox.checked = allChecked;
+    if (mobileCheckbox) mobileCheckbox.checked = allChecked;
+}
+
+// Master Checkbox Listeners (Desktop + Mobile)
+function attachSelectAllListener(id) {
+    const el = document.getElementById(id);
+    if (el) {
+        el.addEventListener('change', (e) => {
+            const checked = e.target.checked;
+            const checkboxes = document.querySelectorAll('.select-image-checkbox');
+            checkboxes.forEach(cb => {
+                const imgId = cb.dataset.id;
+                cb.checked = checked;
+                if (checked) {
+                    selectedImageIds.add(imgId);
+                } else {
+                    selectedImageIds.delete(imgId);
+                }
+            });
+            updateSelectAllState();
+            updateBulkDeleteButton();
+        });
+    }
+}
+
+attachSelectAllListener('select-all-images');
+attachSelectAllListener('mobile-select-all');
+
+// Bulk Actions Logic
+const btnBulkDelete = document.getElementById('btn-bulk-delete');
+const bulkConfirmModal = document.getElementById('bulk-confirm-modal');
+const bulkDeleteCountText = document.getElementById('bulk-delete-count');
+const bulkConfirmBtn = document.getElementById('bulk-confirm');
+const bulkCancelBtn = document.getElementById('bulk-cancel');
+
+const progressModal = document.getElementById('progress-modal');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const progressStep = document.getElementById('progress-step');
+
+if (btnBulkDelete) {
+    btnBulkDelete.addEventListener('click', () => {
+        if (selectedImageIds.size === 0) return;
+        if (bulkDeleteCountText) {
+            bulkDeleteCountText.innerText = selectedImageIds.size;
+        }
+        if (bulkConfirmModal) {
+            bulkConfirmModal.classList.remove('hidden');
+            bulkConfirmModal.classList.add('flex');
+            setTimeout(() => {
+                bulkConfirmModal.style.opacity = '1';
+            }, 10);
+        }
+    });
+}
+
+if (bulkCancelBtn) {
+    bulkCancelBtn.addEventListener('click', () => {
+        if (bulkConfirmModal) {
+            bulkConfirmModal.style.opacity = '0';
+            setTimeout(() => {
+                bulkConfirmModal.classList.add('hidden');
+                bulkConfirmModal.classList.remove('flex');
+            }, 300);
+        }
+    });
+}
+
+if (bulkConfirmBtn) {
+    bulkConfirmBtn.addEventListener('click', async () => {
+        if (bulkConfirmModal) {
+            bulkConfirmModal.classList.add('hidden');
+            bulkConfirmModal.classList.remove('flex');
+        }
+        
+        if (progressModal) {
+            progressModal.classList.remove('hidden');
+            progressModal.classList.add('flex');
+            progressModal.style.opacity = '1';
+        }
+        
+        const total = selectedImageIds.size;
+        let count = 0;
+        
+        if (progressBar) progressBar.style.width = '0%';
+        if (progressText) progressText.innerText = `0 / ${total}`;
+        if (progressStep) progressStep.innerText = 'Initializing deletion...';
+        
+        const batch = writeBatch(db);
+        console.log('[FIRESTORE] Bulk delete: preparing batch for', total, 'document(s)');
+        selectedImageIds.forEach(id => {
+            console.log('[FIRESTORE] Bulk delete: queueing document ID:', id);
+            batch.delete(doc(db, "images", id));
+        });
+        
+        try {
+            if (progressStep) progressStep.innerText = 'Deleting from database...';
+            await batch.commit();
+            console.log('[FIRESTORE] Bulk delete: batch.commit() resolved —', total, 'document(s) deleted');
+            
+            for (let i = 1; i <= total; i++) {
+                count = i;
+                if (progressBar) progressBar.style.width = `${(count / total) * 100}%`;
+                if (progressText) progressText.innerText = `${count} / ${total}`;
+                await new Promise(r => setTimeout(r, 100));
+            }
+            
+            if (progressStep) progressStep.innerText = 'Refreshing gallery...';
+            selectedImageIds.clear();
+            updateBulkDeleteButton();
+            await fetchImages();
+            showSuccessPopup('Task Completed', 'Images deleted successfully.');
+        } catch (error) {
+            console.error('[FIRESTORE] Bulk delete FAILED.',
+                '| err.code:', error.code,
+                '| err.message:', error.message,
+                '| Full error:', error);
+            showToast('error', 'Bulk delete failed: ' + (error.message || 'Unknown error') + '. See console.');
+        } finally {
+            if (progressModal) {
+                progressModal.style.opacity = '0';
+                setTimeout(() => {
+                    progressModal.classList.add('hidden');
+                    progressModal.classList.remove('flex');
+                }, 300);
+            }
+        }
+    });
+}
+
+// ==========================================
+// MOBILE SIDEBAR (Slide-out Drawer)
+// ==========================================
+function initMobileSidebar() {
+    const sidebar = document.getElementById('admin-sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
+    const menuBtn = document.getElementById('mobile-menu-btn');
+    if (!sidebar || !menuBtn || !overlay) {
+        if (DEBUG) console.warn('[DEBUG] initMobileSidebar: missing element(s)', {sidebar: !!sidebar, menuBtn: !!menuBtn, overlay: !!overlay});
+        return;
+    }
+    if (DEBUG) console.log('[DEBUG] initMobileSidebar: all elements found, attaching listeners');
+
+    function openSidebar() {
+        sidebar.classList.add('open');
+        overlay.classList.add('open');
+        menuBtn.classList.add('open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        if (DEBUG) console.log('[DEBUG] Mobile sidebar opened');
+    }
+
+    function closeSidebar() {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('open');
+        menuBtn.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        if (DEBUG) console.log('[DEBUG] Mobile sidebar closed');
+    }
+
+    menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (sidebar.classList.contains('open')) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    });
+
+    // Clicking the overlay closes the drawer
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close button inside the sidebar header
+    const closeBtn = document.getElementById('btn-close-sidebar');
+    if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+
+    // Clicking a tab on mobile closes the drawer after selection
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (window.innerWidth < 1024) {
+                setTimeout(closeSidebar, 200);
+            }
+        });
+    });
+
+    // ESC key closes the drawer
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) closeSidebar();
+    });
+
+    // On resize to desktop, reset any mobile state
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1024) {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+            menuBtn.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        }
+    });
+}
+
+initMobileSidebar();

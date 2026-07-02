@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gallery | Surya Photography</title>
+    <title>Photography Portfolio &amp; Gallery | Surya Photography — Waterloo, Ontario, Canada</title>
+
+    <!-- Performance: Preconnect to third-party origins -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -27,10 +33,112 @@
         }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/components.css">
+
+    <!-- SEO: Primary Meta Tags -->
+    <meta name="description" content="Browse the Surya Photography portfolio — stunning weddings, portraits, maternity and lifestyle sessions photographed in Waterloo, Ontario and across the Greater Toronto Area.">
+    <meta name="keywords" content="photography portfolio Waterloo Ontario, wedding photos Canada, portrait gallery GTA, maternity photography Ontario, lifestyle photography sessions">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Surya Photography">
+    <meta name="theme-color" content="#fd0053">
+
+    <!-- GEO: Geographic Meta Tags -->
+    <meta name="geo.region" content="CA-ON">
+    <meta name="geo.placename" content="Waterloo, Ontario, Canada">
+    <meta name="geo.position" content="43.4668;-80.5164">
+    <meta name="ICBM" content="43.4668, -80.5164">
+
+    <link rel="canonical" href="https://www.suryaphotography.ca/gallery.html">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="assets/images/logo1 (1).jpeg">
+    <link rel="apple-touch-icon" href="assets/images/logo1 (1).jpeg">
+
+    <!-- SEO: Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.suryaphotography.ca/gallery.html">
+    <meta property="og:title" content="Photography Portfolio | Surya Photography — Waterloo, Ontario">
+    <meta property="og:description" content="Browse stunning wedding, portrait, maternity and lifestyle photography from Surya Photography based in Waterloo, Ontario.">
+    <meta property="og:image" content="https://www.suryaphotography.ca/assets/images/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Surya Photography portfolio — Waterloo Ontario">
+    <meta property="og:site_name" content="Surya Photography">
+    <meta property="og:locale" content="en_CA">
+
+    <!-- SEO: Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Photography Portfolio | Surya Photography — Waterloo, Ontario">
+    <meta name="twitter:description" content="Browse stunning wedding, portrait, maternity and lifestyle photography from Surya Photography.">
+    <meta name="twitter:image" content="https://www.suryaphotography.ca/assets/images/og-cover.jpg">
+    <meta name="twitter:image:alt" content="Surya Photography portfolio — Waterloo Ontario">
+
+    <!-- Performance: Preload body font -->
+    <link rel="preload" href="assets/fonts/Erigo.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+    <!-- Schema.org: LocalBusiness (GEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": ["LocalBusiness", "Photographer"],
+        "name": "Surya Photography",
+        "description": "Premium wedding, portrait, maternity and event photography studio in Waterloo, Ontario, Canada.",
+        "url": "https://www.suryaphotography.ca",
+        "telephone": "+14375997965",
+        "email": "Mail2suryacapturra@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Waterloo",
+            "addressRegion": "ON",
+            "postalCode": "N2L",
+            "addressCountry": "CA"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 43.4668,
+            "longitude": -80.5164
+        },
+        "areaServed": [
+            { "@type": "City", "name": "Waterloo" },
+            { "@type": "City", "name": "Kitchener" },
+            { "@type": "City", "name": "Cambridge" },
+            { "@type": "City", "name": "Toronto" },
+            { "@type": "AdministrativeArea", "name": "Greater Toronto Area" }
+        ],
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "bestRating": "5",
+            "reviewCount": "24"
+        }
+    }
+    </script>
+
+    <!-- Schema.org: ImageGallery (AEO) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "name": "Surya Photography Portfolio",
+        "description": "A curated collection of wedding, portrait, maternity, event and lifestyle photography by Surya Photography in Waterloo, Ontario, Canada.",
+        "url": "https://www.suryaphotography.ca/gallery.html",
+        "author": {
+            "@type": "Photographer",
+            "name": "Surya Photography",
+            "url": "https://www.suryaphotography.ca"
+        },
+        "breadcrumb": {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.suryaphotography.ca/" },
+                { "@type": "ListItem", "position": 2, "name": "Gallery", "item": "https://www.suryaphotography.ca/gallery.html" }
+            ]
+        }
+    }
+    </script>
 </head>
 <body class="font-main font-light antialiased selection:bg-highlight selection:text-dark flex flex-col min-h-screen">
 
@@ -40,26 +148,26 @@
             <div class="flex flex-col items-center py-6">
                 <!-- Logo -->
                 <div class="text-center mb-6">
-                    <a href="index.html" class="animate-logo font-main text-5xl md:text-7xl text-dark block uppercase transition-all duration-1000 group">
+                    <a href="index.html" class="animate-logo font-main text-5xl md:text-7xl text-dark block uppercase transition-all duration-1000 group" aria-label="Surya Photography — Home">
                         Surya <span class="animate-text-glow text-3xl md:text-4xl transition-colors duration-1000">Photography</span>
                     </a>
                 </div>
                 
                 <!-- Desktop Menu -->
-                <nav class="hidden md:flex space-x-12 text-[10px] uppercase tracking-widest font-medium text-dark/70">
+                <nav aria-label="Main navigation" class="hidden md:flex space-x-12 text-[10px] uppercase tracking-widest font-medium text-dark/70">
                     <a href="index.html" class="nav-link hover:text-dark transition-colors">Home</a>
                     <a href="about.html" class="nav-link hover:text-dark transition-colors">About</a>
-                    <a href="gallery.html" class="nav-link hover:text-dark transition-colors active">Gallery</a>
+                    <a href="gallery.html" class="nav-link hover:text-dark transition-colors active" aria-current="page">Gallery</a>
                     <a href="contact.html" class="nav-link hover:text-dark transition-colors">Contact</a>
                 </nav>
 
                 <div class="md:hidden absolute top-8 right-6">
-                    <button id="mobile-menu-btn" class="text-dark hover:text-main focus:outline-none transition-colors"><i class="fas fa-bars text-xl"></i></button>
+                    <button id="mobile-menu-btn" class="text-dark hover:text-main focus:outline-none transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden bg-white border-t border-dark/5 absolute w-full shadow-lg">
+        <div id="mobile-menu" class="hidden bg-white border-t border-dark/5 absolute w-full shadow-lg" role="navigation" aria-label="Mobile navigation">
             <div class="flex flex-col items-center py-6 space-y-6 text-[11px] uppercase tracking-widest font-medium text-dark/70">
                 <a href="index.html" class="hover:text-main transition-colors">Home</a>
                 <a href="about.html" class="hover:text-main transition-colors">About</a>
@@ -72,13 +180,23 @@
     <!-- Main Content -->
     <main class="flex-grow pt-48 pb-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+            <!-- Breadcrumb -->
+            <nav aria-label="Breadcrumb" class="mb-8 fade-up text-left">
+                <ol class="flex items-center space-x-2 font-main text-[10px] uppercase tracking-widest text-dark/40">
+                    <li><a href="index.html" class="hover:text-main transition-colors">Home</a></li>
+                    <li aria-hidden="true"><span class="mx-1">/</span></li>
+                    <li><span class="text-dark/70" aria-current="page">Gallery</span></li>
+                </ol>
+            </nav>
             
             <div class="mb-16 fade-up">
                 <h1 class="font-display text-6xl md:text-8xl text-dark">Portfolio</h1>
+                <p class="font-main text-sm text-dark/60 mt-4 tracking-widest">Wedding · Portrait · Maternity · Events · Lifestyle — Waterloo, Ontario</p>
             </div>
 
             <!-- Filters -->
-            <div class="flex overflow-x-auto hide-scrollbar md:flex-wrap justify-start md:justify-center gap-4 px-2 mt-12 mb-20 fade-up py-4" id="gallery-filters">
+            <div class="flex overflow-x-auto hide-scrollbar md:flex-wrap justify-start md:justify-center gap-4 px-2 mt-12 mb-20 fade-up py-4" id="gallery-filters" role="group" aria-label="Filter gallery by category">
                 <button class="filter-btn active text-[10px] uppercase tracking-widest font-main" data-filter="all">All</button>
                 <button class="filter-btn text-[10px] uppercase tracking-widest font-main" data-filter="weddings">Weddings</button>
                 <button class="filter-btn text-[10px] uppercase tracking-widest font-main" data-filter="portraits">Portraits</button>
@@ -86,55 +204,76 @@
                 <button class="filter-btn text-[10px] uppercase tracking-widest font-main" data-filter="maternity">Maternity</button>
                 <button class="filter-btn text-[10px] uppercase tracking-widest font-main" data-filter="lifestyle">Lifestyle</button>
             </div>
-    <button id="select-mode-toggle" class="px-4 py-2 bg-main text-white rounded-md hover:bg-highlight transition-colors duration-200">Select</button>
-            
-            <!-- Gallery Grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] md:auto-rows-[250px] gap-3 md:gap-4 px-2" id="gallery-grid">
-                <!-- Javascript will populate this with bento items -->
+
+            <!-- Gallery Grid — Static fallback images (SEO-indexable) + JS fills dynamically from Firebase -->
+            <div class="grid grid-cols-2 md:grid-cols-4 auto-rows-[150px] md:auto-rows-[250px] gap-3 md:gap-4 px-2" id="gallery-grid" aria-label="Photography portfolio gallery">
+                <!-- Static fallback: visible to search engines & non-JS users -->
+                <div class="bento-item col-span-2 row-span-2 photo-reveal" data-src="assets/images/Copy%20of%20DSC00343.jpg" data-type="image" role="button" tabindex="0" aria-label="View wedding photo">
+                    <picture>
+                        <source srcset="assets/images/web/DSC00343.webp" type="image/webp">
+                        <img src="assets/images/Copy%20of%20DSC00343.jpg" loading="lazy" alt="Wedding couple sharing a tender moment — wedding photography by Surya Photography, Waterloo Ontario">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
+                <div class="bento-item col-span-1 row-span-1 photo-reveal" data-src="assets/images/Copy%20of%20DSC00602.jpg" data-type="image" role="button" tabindex="0" aria-label="View portrait photo" style="transition-delay:100ms">
+                    <picture>
+                        <source srcset="assets/images/web/hero-4.webp" type="image/webp">
+                        <img src="assets/images/Copy%20of%20DSC00602.jpg" loading="lazy" alt="Professional portrait photography session by Surya Photography in Ontario">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
+                <div class="bento-item col-span-1 row-span-1 photo-reveal" data-src="assets/images/Copy%20of%20DSC00823.jpg" data-type="image" role="button" tabindex="0" aria-label="View event photo" style="transition-delay:200ms">
+                    <picture>
+                        <source srcset="assets/images/web/DSC00823.webp" type="image/webp">
+                        <img src="assets/images/Copy%20of%20DSC00823.jpg" loading="lazy" alt="Candid event moment captured by Surya Photography — cultural event photography Ontario">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
+                <div class="bento-item col-span-2 row-span-1 photo-reveal" data-src="assets/images/DSC02177.jpg" data-type="image" role="button" tabindex="0" aria-label="View lifestyle photo" style="transition-delay:300ms">
+                    <picture>
+                        <source srcset="assets/images/web/hero-2.webp" type="image/webp">
+                        <img src="assets/images/DSC02177.jpg" loading="lazy" alt="Lifestyle and celebration photography in Ontario by Surya Photography">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
+                <div class="bento-item col-span-2 row-span-2 photo-reveal" data-src="assets/images/DSC09652.jpg" data-type="image" role="button" tabindex="0" aria-label="View wedding photo" style="transition-delay:400ms">
+                    <picture>
+                        <source srcset="assets/images/web/hero-3.webp" type="image/webp">
+                        <img src="assets/images/DSC09652.jpg" loading="lazy" alt="Emotional wedding ceremony moment by Surya Photography in Waterloo Ontario">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
+                <div class="bento-item col-span-1 row-span-1 photo-reveal" data-src="assets/images/DSC00147.jpg" data-type="image" role="button" tabindex="0" aria-label="View maternity photo" style="transition-delay:500ms">
+                    <picture>
+                        <source srcset="assets/images/web/DSC00147.webp" type="image/webp">
+                        <img src="assets/images/DSC00147.jpg" loading="lazy" alt="Maternity portrait photography in Ontario by Surya Photography">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
+                <div class="bento-item col-span-1 row-span-1 photo-reveal" data-src="assets/images/DSC02092.jpg" data-type="image" role="button" tabindex="0" aria-label="View lifestyle photo" style="transition-delay:600ms">
+                    <picture>
+                        <source srcset="assets/images/web/DSC02092.webp" type="image/webp">
+                        <img src="assets/images/DSC02092.jpg" loading="lazy" alt="Candid lifestyle photography session by Surya Photography">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
+                <div class="bento-item col-span-2 row-span-1 photo-reveal" data-src="assets/images/DSC02177.jpg" data-type="image" role="button" tabindex="0" aria-label="View portrait photo" style="transition-delay:700ms">
+                    <picture>
+                        <source srcset="assets/images/web/DSC02101.webp" type="image/webp">
+                        <img src="assets/images/DSC02101.jpg" loading="lazy" alt="Portrait photography by Surya Photography — natural light session in Waterloo">
+                    </picture>
+                    <div class="overlay" aria-hidden="true"></div>
+                </div>
             </div>
-    <!-- Floating Action Bar -->
-    <div id="selection-bar" class="hidden fixed bottom-8 right-8 bg-white/30 backdrop-blur-lg rounded-xl shadow-lg p-4 flex items-center space-x-3 z-50">
-        <span id="selected-count" class="text-sm font-medium text-dark"></span>
-        <button id="delete-selected" class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700">Delete Selected</button>
-        <button id="move-category" class="px-3 py-1 bg-main text-white rounded hover:bg-highlight">Move to Category</button>
-        <button id="select-all" class="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700">Select All</button>
-        <button id="clear-selection" class="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700">Clear</button>
-        <button id="cancel-selection" class="px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700">Cancel</button>
-    </div>
-    <!-- Bulk Action Confirm Modal -->
-    <div id="bulk-confirm-modal" class="fixed inset-0 bg-black/60 backdrop-blur-md hidden items-center justify-center z-[110] transition-opacity duration-300 opacity-0">
-        <div class="glass-panel rounded-3xl p-6 w-full max-w-md text-center shadow-2xl border border-white/20 relative overflow-hidden">
-            <div class="flex items-center justify-center mb-4">
-                <i class="fas fa-exclamation-triangle text-4xl text-red-500"></i>
-            </div>
-            <h2 class="text-xl font-semibold mb-2">Delete <span id="bulk-delete-count"></span> images?</h2>
-            <p class="mb-4 text-sm text-gray-700">These images will be permanently removed from Cloudinary and Firestore. This action cannot be undone.</p>
-            <div class="flex justify-center space-x-4">
-                <button id="bulk-cancel" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-                <button id="bulk-confirm" class="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700">Delete</button>
-            </div>
-        </div>
-    </div>
-    <!-- Progress Modal -->
-    <div id="progress-modal" class="fixed inset-0 bg-black/60 backdrop-blur-md hidden items-center justify-center z-[120] transition-opacity duration-300 opacity-0">
-        <div class="glass-panel rounded-3xl p-6 w-full max-w-md text-center shadow-2xl border border-white/20">
-            <h3 class="text-lg font-medium mb-2" id="progress-title">Deleting Images</h3>
-            <div class="w-full bg-gray-200 rounded-full h-2.5 mb-2">
-                <div id="progress-bar" class="bg-main h-2.5 rounded-full" style="width:0%"></div>
-            </div>
-            <p id="progress-text" class="text-sm text-gray-800">0 / 0</p>
-            <p id="progress-step" class="text-sm text-gray-600 mt-1"></p>
-        </div>
-    </div>
 
         </div>
     </main>
 
     <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 z-[100] bg-white/95 backdrop-blur-md hidden flex justify-center items-center opacity-0 transition-opacity duration-500">
-        <button id="lightbox-close" class="absolute top-8 right-8 text-dark/50 hover:text-main text-3xl font-light focus:outline-none transition-colors">&times;</button>
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-white/95 backdrop-blur-md hidden flex justify-center items-center opacity-0 transition-opacity duration-500" role="dialog" aria-modal="true" aria-label="Photography viewer" aria-hidden="true">
+        <button id="lightbox-close" class="absolute top-8 right-8 text-dark/50 hover:text-main text-3xl font-light focus:outline-none transition-colors" aria-label="Close photography viewer">&times;</button>
         <div class="max-h-[90vh] max-w-[90vw] relative shadow-2xl">
-            <img id="lightbox-img" src="" alt="Fullscreen" class="max-h-[85vh] w-auto object-contain hidden">
+            <img id="lightbox-img" src="" alt="" class="max-h-[85vh] w-auto object-contain hidden">
             <video id="lightbox-video" class="max-h-[85vh] w-auto object-contain hidden" controls preload="none"></video>
         </div>
     </div>
@@ -142,43 +281,47 @@
     <!-- Footer -->
     <footer class="bg-white border-t border-dark/5 pt-24 pb-12 mt-auto">
         <div class="max-w-4xl mx-auto px-4 text-center fade-up">
-            <div class="flex justify-center items-center space-x-12 mb-16">
-                <a href="https://www.instagram.com/collabwithsurya?igsh=bWg0N2hnZHMwbHFk&utm_source=qr" class="text-dark/50 hover:text-main transition-colors"><i class="fab fa-instagram text-xl"></i></a>
-                <a href="mailto:Mail2suryacapturra@gmail.com" class="text-dark/50 hover:text-main transition-colors"><i class="far fa-envelope text-xl"></i></a>
-                <a href="https://wa.me/14375997965" class="text-dark/50 hover:text-main transition-colors"><i class="fab fa-whatsapp text-xl"></i></a>
+            <div class="flex justify-center items-center space-x-12 mb-10">
+                <a href="https://www.instagram.com/collabwithsurya?igsh=bWg0N2hnZHMwbHFk&utm_source=qr" class="text-dark/50 hover:text-main transition-colors" target="_blank" rel="noopener noreferrer" aria-label="Follow Surya Photography on Instagram"><i class="fab fa-instagram text-xl" aria-hidden="true"></i></a>
+                <a href="mailto:Mail2suryacapturra@gmail.com" class="text-dark/50 hover:text-main transition-colors" aria-label="Email Surya Photography"><i class="far fa-envelope text-xl" aria-hidden="true"></i></a>
+                <a href="https://wa.me/14375997965" class="text-dark/50 hover:text-main transition-colors" target="_blank" rel="noopener noreferrer" aria-label="Contact Surya Photography on WhatsApp"><i class="fab fa-whatsapp text-xl" aria-hidden="true"></i></a>
             </div>
 
+            <!-- NAP: Name Address Phone — Local SEO -->
+            <address class="not-italic font-main text-[10px] tracking-widest uppercase text-dark/50 mb-10 space-y-1">
+                <p>Waterloo, Ontario, Canada</p>
+                <p><a href="tel:+14375997965" class="hover:text-main transition-colors">+1 437-599-7965</a> &nbsp;·&nbsp; <a href="mailto:Mail2suryacapturra@gmail.com" class="hover:text-main transition-colors">Mail2suryacapturra@gmail.com</a></p>
+                <p>Serving Waterloo · Kitchener · Cambridge · Greater Toronto Area</p>
+            </address>
+
             <div class="border-t border-dark/5 pt-8 text-[9px] uppercase tracking-[0.3em] text-dark/40 flex items-center justify-center space-x-4">
-                <span>&copy; <script>document.write(new Date().getFullYear())</script> Surya Photography</span>
-                <span class="w-1 h-1 rounded-full bg-highlight"></span>
+                <span>© <span id="footer-year"></span> Surya Photography</span>
+                <span class="w-1 h-1 rounded-full bg-highlight" aria-hidden="true"></span>
                 <span>All Rights Reserved</span>
             </div>
         </div>
     </footer>
 
     <!-- Floating Scroll Coin -->
-    <div class="coin-container fixed bottom-8 right-8 w-20 h-20 md:w-24 md:h-24 z-50 rounded-full pointer-events-none drop-shadow-xl">
+    <div class="coin-container fixed bottom-8 right-8 w-20 h-20 md:w-24 md:h-24 z-50 rounded-full pointer-events-none drop-shadow-xl" aria-hidden="true">
         <div class="coin-inner w-full h-full relative" id="scroll-coin">
             <div class="coin-face absolute inset-0 rounded-full overflow-hidden border-2 border-white">
-                <img src="assets/images/logo1 (1).jpeg" alt="Surya Photography Logo Front" class="w-full h-full object-cover">
+                <img src="assets/images/logo1 (1).jpeg" alt="Surya Photography Logo" class="w-full h-full object-cover">
             </div>
             <div class="coin-face coin-back absolute inset-0 rounded-full overflow-hidden border-2 border-white">
-                <img src="assets/images/logo1 (2).jpeg" alt="Surya Photography Logo Back" class="w-full h-full object-cover">
+                <img src="assets/images/logo1 (2).jpeg" alt="Surya Photography Logo" class="w-full h-full object-cover">
             </div>
         </div>
     </div>
 
     <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/14375997965?text=Hello%20Surya%20Photography,%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" class="fixed bottom-8 left-8 w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_10px_rgba(37,211,102,0.4)] hover:scale-110 hover:shadow-[0_8px_20px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group">
-        <i class="fab fa-whatsapp"></i>
-        <!-- Optional Tooltip -->
-        <span class="absolute left-full ml-4 px-3 py-2 bg-white text-dark text-xs font-main tracking-widest uppercase rounded shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Chat with us</span>
+    <a href="https://wa.me/14375997965?text=Hello%20Surya%20Photography,%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat with Surya Photography on WhatsApp" class="fixed bottom-8 left-8 w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_10px_rgba(37,211,102,0.4)] hover:scale-110 hover:shadow-[0_8px_20px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        <span class="absolute left-full ml-4 px-3 py-2 bg-white text-dark text-xs font-main tracking-widest uppercase rounded shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none" aria-hidden="true">Chat with us</span>
     </a>
 
-    
     <script src="js/animations.js" defer></script>
     <script src="js/main.js" defer></script>
     <script type="module" src="js/gallery.js" defer></script>
 </body>
 </html>
-

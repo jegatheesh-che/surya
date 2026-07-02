@@ -1,0 +1,12 @@
+# robots.txt — Surya Photography
+# https://www.suryaphotography.ca
+
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /js/admin.js
+Disallow: /assets/images/web/
+Disallow: /assets/images/thumb/
+
+# Sitemap location
+Sitemap: https://www.suryaphotography.ca/sitemap.xml

@@ -60,21 +60,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const subject = document.getElementById('subject').value.trim();
         const message = document.getElementById('message').value.trim();
 
-        return `?? *New Photography Booking Inquiry*
+        return `📸 *New Photography Booking Inquiry*
 
-?? Name:
+👤 Name:
 ${name}
 
-?? Phone:
+📞 Phone:
 ${phone}
 
-?? Email:
+📧 Email:
 ${email}
 
-?? Subject / Event Type:
+🎯 Subject / Event Type:
 ${subject}
 
-?? Message:
+💬 Message:
 ${message}`;
     }
 

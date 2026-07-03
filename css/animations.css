@@ -1,61 +1,141 @@
 /* IntersectionObserver reveals */
-.fade-up { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-.photo-reveal { opacity: 0; transform: scale(0.95) translateY(40px); transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1); }
-.photo-reveal.visible { opacity: 1; transform: scale(1) translateY(0); }
+.photo-reveal {
+  opacity: 0;
+  transform: scale(0.95) translateY(40px);
+  transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.photo-reveal.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
 
 /* Continuous floating animations */
-.animate-logo { animation: logoBreathe 8s ease-in-out infinite; }
-@keyframes logoBreathe { 0%, 100% { letter-spacing: 0.1em; } 50% { letter-spacing: 0.25em; } }
+.animate-logo {
+  animation: logoBreathe 8s ease-in-out infinite;
+}
+@keyframes logoBreathe {
+  0%,
+  100% {
+    letter-spacing: 0.1em;
+  }
+  50% {
+    letter-spacing: 0.25em;
+  }
+}
 
-.animate-text-glow { animation: textGlow 8s ease-in-out infinite; }
-@keyframes textGlow { 0%, 100% { color: rgba(43, 32, 36, 0.7); } 50% { color: #fd0053; } }
+.animate-text-glow {
+  animation: textGlow 8s ease-in-out infinite;
+}
+@keyframes textGlow {
+  0%,
+  100% {
+    color: rgba(43, 32, 36, 0.7);
+  }
+  50% {
+    color: #fd0053;
+  }
+}
 
 /* Hero Slider Animation */
-.hero-slide { opacity: 0; transition: opacity 1.5s ease-in-out; position: absolute; inset: 0; animation: slowZoom 25s ease-in-out infinite alternate; }
-.hero-slide.active { opacity: 1; z-index: 1; }
-@keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+.hero-slide {
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+  position: absolute;
+  inset: 0;
+  animation: slowZoom 25s ease-in-out infinite alternate;
+}
+.hero-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+@keyframes slowZoom {
+  0% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 /* iOS App Logo Animation (About page) */
-.ios-logo-container { perspective: 1000px; }
-.ios-logo-inner {
-    animation: floatLogo 6s ease-in-out infinite;
-    box-shadow: 0 20px 40px -10px rgba(253, 0, 83, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.5);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.ios-logo-container {
+  perspective: 1000px;
 }
-.ios-logo-inner:hover { transform: scale(1.05) rotateY(10deg) rotateX(-5deg); }
-@keyframes floatLogo { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+.ios-logo-inner {
+  animation: floatLogo 6s ease-in-out infinite;
+  box-shadow:
+    0 20px 40px -10px rgba(253, 0, 83, 0.4),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.ios-logo-inner:hover {
+  transform: scale(1.05) rotateY(10deg) rotateX(-5deg);
+}
+@keyframes floatLogo {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
 
 /* Hero Text Stroke & Glow */
-.text-stroke-glow { -webkit-text-stroke: 1.5px #ffffff;  }
-
+.text-stroke-glow {
+  -webkit-text-stroke: 1.5px #ffffff;
+}
 
 /* Moving Theme Light Behind Text */
 .theme-light-behind {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 140%;
-    height: 140%;
-    background: linear-gradient(90deg, #fd0053, #9b51e0, #ffd716, #fd0053);
-    background-size: 300% 300%;
-    filter: blur(80px);
-    opacity: 0.6;
-    z-index: -1;
-    border-radius: 50%;
-    animation: moveLight 8s ease-in-out infinite, pulseLight 4s ease-in-out infinite alternate;
-    pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 140%;
+  background: linear-gradient(90deg, #fd0053, #9b51e0, #ffd716, #fd0053);
+  background-size: 300% 300%;
+  filter: blur(80px);
+  opacity: 0.6;
+  z-index: -1;
+  border-radius: 50%;
+  animation:
+    moveLight 8s ease-in-out infinite,
+    pulseLight 4s ease-in-out infinite alternate;
+  pointer-events: none;
 }
 
 @keyframes moveLight {
-    0% { background-position: 0% 50%; transform: translate(-50%, -45%) scale(1); }
-    50% { background-position: 100% 50%; transform: translate(-50%, -55%) scale(1.1); }
-    100% { background-position: 0% 50%; transform: translate(-50%, -45%) scale(1); }
+  0% {
+    background-position: 0% 50%;
+    transform: translate(-50%, -45%) scale(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    transform: translate(-50%, -55%) scale(1.1);
+  }
+  100% {
+    background-position: 0% 50%;
+    transform: translate(-50%, -45%) scale(1);
+  }
 }
 
 @keyframes pulseLight {
-    0% { opacity: 0.4; }
-    100% { opacity: 0.8; }
+  0% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0.8;
+  }
 }

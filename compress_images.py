@@ -63,6 +63,8 @@ HERO_RENAMES = {
     "DSC02177.jpg":         "hero-2.webp",
     "DSC09652.jpg":         "hero-3.webp",
     "Copy of DSC00602.jpg": "hero-4.webp",
+    "Copy of DSC08580.jpg": "hero-5.webp",
+    "DSC08866.jpg":         "hero-6.webp",
 }
 # Friendly names for portfolio preview images used on homepage
 PORTFOLIO_RENAMES = {

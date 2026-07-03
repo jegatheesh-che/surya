@@ -1,468 +1,844 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Surya Photography | Book Your Session — Waterloo, Ontario, Canada</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Contact Surya Photography | Book Your Session — Waterloo, Ontario, Canada
+    </title>
 
-    <!-- Performance: Preconnect to third-party origins -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="preconnect" href="https://www.google.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://www.google.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..700;1,300..700&display=swap"
+      rel="stylesheet"
+    />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        main: '#fd0053',
-                        highlight: '#ffd716',
-                        dark: '#2b2024',
-                        light: '#ffffff',
-                    },
-                    fontFamily: {
-                        display: ['"Camping Holiday"', 'serif'],
-                        main: ['Erigo', 'sans-serif'],
-                    },
-                    letterSpacing: {
-                        widest: '.25em',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              main: "#fd0053",
+              highlight: "#ffd716",
+              dark: "#2b2024",
+              light: "#ffffff",
+            },
+            fontFamily: {
+              display: ['"Playfair Display"', "Georgia", "serif"],
+              main: ['"Plus Jakarta Sans"', "-apple-system", "sans-serif"],
+              logo: ["Erigo", "sans-serif"],
+            },
+            letterSpacing: {
+              widest: ".25em",
+            },
+          },
+        },
+      };
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/animations.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/components.css" />
 
     <!-- SEO: Primary Meta Tags -->
-    <meta name="description" content="Book Surya Photography for your wedding, portrait or event. Based in Waterloo, Ontario, Canada. Available across the GTA and Waterloo Region. Contact us today via WhatsApp or email.">
-    <meta name="keywords" content="book photographer Waterloo Ontario, contact Surya Photography, wedding photographer inquiry, portrait booking GTA, photography session Ontario">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Surya Photography">
-    <meta name="theme-color" content="#fd0053">
+    <meta
+      name="description"
+      content="Book Surya Photography for your special event, portrait or session. Based in Waterloo, Ontario, Canada. Available across the GTA and Waterloo Region. Contact us today via WhatsApp or email."
+    />
+    <meta
+      name="keywords"
+      content="book photographer Waterloo Ontario, contact Surya Photography, event photographer inquiry, portrait booking GTA, photography session Ontario"
+    />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Surya Photography" />
+    <meta name="theme-color" content="#fd0053" />
 
     <!-- GEO: Geographic Meta Tags -->
-    <meta name="geo.region" content="CA-ON">
-    <meta name="geo.placename" content="Waterloo, Ontario, Canada">
-    <meta name="geo.position" content="43.4668;-80.5164">
-    <meta name="ICBM" content="43.4668, -80.5164">
+    <meta name="geo.region" content="CA-ON" />
+    <meta name="geo.placename" content="Waterloo, Ontario, Canada" />
+    <meta name="geo.position" content="43.4668;-80.5164" />
+    <meta name="ICBM" content="43.4668, -80.5164" />
 
-    <link rel="canonical" href="https://www.suryaphotography.ca/contact.html">
+    <link rel="canonical" href="https://www.suryaphotography.ca/contact.html" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="assets/images/logo1 (1).jpeg">
-    <link rel="apple-touch-icon" href="assets/images/logo1 (1).jpeg">
+    <link
+      rel="icon"
+      type="image/webp"
+      href="assets/images/web/logo1 (1).webp"
+    />
+    <link rel="apple-touch-icon" href="assets/images/web/logo1 (1).webp" />
 
     <!-- SEO: Open Graph -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.suryaphotography.ca/contact.html">
-    <meta property="og:title" content="Contact &amp; Book a Session | Surya Photography — Waterloo, Ontario">
-    <meta property="og:description" content="Available for weddings, portraits, and editorial commissions. Based in Waterloo, Ontario — serving the GTA and Waterloo Region.">
-    <meta property="og:image" content="https://www.suryaphotography.ca/assets/images/og-cover.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Contact Surya Photography — book your session in Waterloo, Ontario">
-    <meta property="og:site_name" content="Surya Photography">
-    <meta property="og:locale" content="en_CA">
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://www.suryaphotography.ca/contact.html"
+    />
+    <meta
+      property="og:title"
+      content="Contact &amp; Book a Session | Surya Photography — Waterloo, Ontario"
+    />
+    <meta
+      property="og:description"
+      content="Available for special events, portraits, and editorial commissions. Based in Waterloo, Ontario — serving the GTA and Waterloo Region."
+    />
+    <meta
+      property="og:image"
+      content="https://www.suryaphotography.ca/assets/images/og-cover.jpg"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Contact Surya Photography — book your session in Waterloo, Ontario"
+    />
+    <meta property="og:site_name" content="Surya Photography" />
+    <meta property="og:locale" content="en_CA" />
 
     <!-- SEO: Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contact &amp; Book a Session | Surya Photography — Waterloo, Ontario">
-    <meta name="twitter:description" content="Available for weddings, portraits, and editorial commissions. Based in Waterloo, Ontario.">
-    <meta name="twitter:image" content="https://www.suryaphotography.ca/assets/images/og-cover.jpg">
-    <meta name="twitter:image:alt" content="Contact Surya Photography — Waterloo, Ontario">
-
-    <!-- Performance: Preload body font -->
-    <link rel="preload" href="assets/fonts/Erigo.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Contact &amp; Book a Session | Surya Photography — Waterloo, Ontario"
+    />
+    <meta
+      name="twitter:description"
+      content="Available for special events, portraits, and editorial commissions. Based in Waterloo, Ontario."
+    />
+    <meta
+      name="twitter:image"
+      content="https://www.suryaphotography.ca/assets/images/og-cover.jpg"
+    />
+    <meta
+      name="twitter:image:alt"
+      content="Contact Surya Photography — Waterloo, Ontario"
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/Erigo.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
 
     <!-- Schema.org: LocalBusiness Contact (GEO) -->
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": ["LocalBusiness", "Photographer"],
         "name": "Surya Photography",
-        "description": "Premium wedding, portrait, maternity and event photography studio based in Waterloo, Ontario, Canada.",
+        "description": "Premium event, portrait, maternity and celebration photography studio based in Waterloo, Ontario, Canada.",
         "url": "https://www.suryaphotography.ca",
         "telephone": "+14375997965",
         "email": "Mail2suryacapturra@gmail.com",
         "image": "https://www.suryaphotography.ca/assets/images/og-cover.jpg",
         "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Waterloo",
-            "addressLocality": "Waterloo",
-            "addressRegion": "ON",
-            "postalCode": "N2L",
-            "addressCountry": "CA"
+          "@type": "PostalAddress",
+          "streetAddress": "Waterloo",
+          "addressLocality": "Waterloo",
+          "addressRegion": "ON",
+          "postalCode": "N2L",
+          "addressCountry": "CA"
         },
         "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 43.4668,
-            "longitude": -80.5164
+          "@type": "GeoCoordinates",
+          "latitude": 43.4668,
+          "longitude": -80.5164
         },
         "openingHoursSpecification": [
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-                "opens": "09:00",
-                "closes": "20:00"
-            }
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "09:00",
+            "closes": "20:00"
+          }
         ],
         "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+14375997965",
-            "contactType": "customer service",
-            "email": "Mail2suryacapturra@gmail.com",
-            "availableLanguage": ["English", "Tamil"]
+          "@type": "ContactPoint",
+          "telephone": "+14375997965",
+          "contactType": "customer service",
+          "email": "Mail2suryacapturra@gmail.com",
+          "availableLanguage": ["English", "Tamil"]
         },
         "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "bestRating": "5",
-            "reviewCount": "24"
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "reviewCount": "24"
         },
         "areaServed": [
-            { "@type": "City", "name": "Waterloo" },
-            { "@type": "City", "name": "Kitchener" },
-            { "@type": "City", "name": "Cambridge" },
-            { "@type": "City", "name": "Toronto" },
-            { "@type": "AdministrativeArea", "name": "Greater Toronto Area" }
+          { "@type": "City", "name": "Waterloo" },
+          { "@type": "City", "name": "Kitchener" },
+          { "@type": "City", "name": "Cambridge" },
+          { "@type": "City", "name": "Toronto" },
+          { "@type": "AdministrativeArea", "name": "Greater Toronto Area" }
         ],
         "sameAs": [
-            "https://www.instagram.com/collabwithsurya",
-            "https://www.instagram.com/suriyaa.ca"
+          "https://www.instagram.com/collabwithsurya",
+          "https://www.instagram.com/suriyaa.ca"
         ]
-    }
+      }
     </script>
 
     <!-- Schema.org: FAQ Page (AEO — Answer Engine Optimization) -->
-    <script type="application/ld+json">
-    {
+    <script type="application/ld+json" data-schema="faq">
+      {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         "mainEntity": [
-            {
-                "@type": "Question",
-                "name": "What photography services does Surya Photography offer?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Surya Photography offers wedding photography, portrait photography, maternity photography, event photography, and lifestyle photography in Waterloo, Ontario and across the Greater Toronto Area."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Where is Surya Photography located?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Surya Photography is based in Waterloo, Ontario, Canada, and serves clients across the Waterloo Region, Greater Toronto Area, Kitchener, and Cambridge."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "How do I book a photography session with Surya Photography?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "You can book a session by contacting Surya Photography via WhatsApp at +1 437-599-7965, by email at Mail2suryacapturra@gmail.com, or by filling out the contact form on this website."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "Does Surya Photography travel outside Waterloo for sessions?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Yes. Surya Photography is available for sessions across the Greater Toronto Area, Kitchener, Cambridge, and beyond. Destination photography is also available upon request."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What is the price range for Surya Photography sessions?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Surya Photography offers premium photography packages at competitive rates. Contact directly via WhatsApp at +1 437-599-7965 or email Mail2suryacapturra@gmail.com for a custom quote based on your session type."
-                }
-            },
-            {
-                "@type": "Question",
-                "name": "What languages does Surya Photography speak?",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "Surya Photography is available in English and Tamil."
-                }
+          {
+            "@type": "Question",
+            "name": "What photography services does Surya Photography offer?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Surya Photography offers event photography, portrait photography, maternity photography, celebration photography, and lifestyle photography in Waterloo, Ontario and across the Greater Toronto Area."
             }
+          },
+          {
+            "@type": "Question",
+            "name": "Where is Surya Photography located?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Surya Photography is based in Waterloo, Ontario, Canada, and serves clients across the Waterloo Region, Greater Toronto Area, Kitchener, and Cambridge."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I book a photography session with Surya Photography?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can book a session by contacting Surya Photography via WhatsApp at +1 437-599-7965, by email at Mail2suryacapturra@gmail.com, or by filling out the contact form on this website."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does Surya Photography travel outside Waterloo for sessions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Surya Photography is available for sessions across the Greater Toronto Area, Kitchener, Cambridge, and beyond. Destination photography is also available upon request."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the price range for Surya Photography sessions?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Surya Photography offers premium photography packages at competitive rates. Contact directly via WhatsApp at +1 437-599-7965 or email Mail2suryacapturra@gmail.com for a custom quote based on your session type."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What languages does Surya Photography speak?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Surya Photography is available in English and Tamil."
+            }
+          }
         ]
-    }
+      }
     </script>
 
     <!-- Schema.org: Breadcrumb -->
     <script type="application/ld+json">
-    {
+      {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.suryaphotography.ca/" },
-            { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://www.suryaphotography.ca/contact.html" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.suryaphotography.ca/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact",
+            "item": "https://www.suryaphotography.ca/contact.html"
+          }
         ]
-    }
+      }
     </script>
-</head>
-<body class="font-main font-light antialiased selection:bg-highlight selection:text-dark flex flex-col min-h-screen">
-
+  </head>
+  <body
+    class="font-main font-light antialiased selection:bg-highlight selection:text-dark flex flex-col min-h-screen"
+  >
     <!-- Header -->
-    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-dark/5 transition-all duration-300" id="header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center py-6">
-                <!-- Logo -->
-                <div class="text-center mb-6">
-                    <a href="index.html" class="animate-logo font-main text-5xl md:text-7xl text-dark block uppercase transition-all duration-1000 group" aria-label="Surya Photography — Home">
-                        Surya <span class="animate-text-glow text-3xl md:text-4xl transition-colors duration-1000">Photography</span>
-                    </a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <nav aria-label="Main navigation" class="hidden md:flex space-x-12 text-[10px] uppercase tracking-widest font-medium text-dark/70">
-                    <a href="index.html" class="nav-link hover:text-dark transition-colors">Home</a>
-                    <a href="about.html" class="nav-link hover:text-dark transition-colors">About</a>
-                    <a href="gallery.html" class="nav-link hover:text-dark transition-colors">Gallery</a>
-                    <a href="contact.html" class="nav-link hover:text-dark transition-colors active" aria-current="page">Contact</a>
-                </nav>
+    <header
+      class="fixed w-full z-50 bg-white/95 backdrop-blur-sm border-b border-dark/5 transition-all duration-300"
+      id="header"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col items-center py-6">
+          <!-- Logo -->
+          <div class="text-center mb-6">
+            <a
+              href="index.html"
+              class="animate-logo font-logo text-5xl md:text-7xl text-dark block uppercase transition-all duration-1000 group"
+              aria-label="Surya Photography — Home"
+            >
+              Surya
+              <span
+                class="animate-text-glow text-3xl md:text-4xl transition-colors duration-1000"
+                >Photography</span
+              >
+            </a>
+          </div>
 
-                <div class="md:hidden absolute top-8 right-6">
-                    <button id="mobile-menu-btn" class="text-dark hover:text-main focus:outline-none transition-colors" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu"><i class="fas fa-bars text-xl" aria-hidden="true"></i></button>
-                </div>
-            </div>
+          <!-- Desktop Menu -->
+          <nav
+            aria-label="Main navigation"
+            class="hidden md:flex space-x-12 text-[10px] uppercase tracking-widest font-medium text-dark/70"
+          >
+            <a
+              href="index.html"
+              class="nav-link hover:text-dark transition-colors"
+              >Home</a
+            >
+            <a
+              href="about.html"
+              class="nav-link hover:text-dark transition-colors"
+              >About</a
+            >
+            <a
+              href="gallery.html"
+              class="nav-link hover:text-dark transition-colors"
+              >Gallery</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link hover:text-dark transition-colors active"
+              aria-current="page"
+              >Contact</a
+            >
+          </nav>
+
+          <div class="md:hidden absolute top-8 right-6">
+            <button
+              id="mobile-menu-btn"
+              class="text-dark hover:text-main focus:outline-none transition-colors"
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+            >
+              <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+          </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden bg-white border-t border-dark/5 absolute w-full shadow-lg" role="navigation" aria-label="Mobile navigation">
-            <div class="flex flex-col items-center py-6 space-y-6 text-[11px] uppercase tracking-widest font-medium text-dark/70">
-                <a href="index.html" class="hover:text-main transition-colors">Home</a>
-                <a href="about.html" class="hover:text-main transition-colors">About</a>
-                <a href="gallery.html" class="hover:text-main transition-colors">Gallery</a>
-                <a href="contact.html" class="hover:text-main transition-colors">Contact</a>
-            </div>
+      </div>
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden bg-white border-t border-dark/5 absolute w-full shadow-lg"
+        role="navigation"
+        aria-label="Mobile navigation"
+      >
+        <div
+          class="flex flex-col items-center py-6 space-y-6 text-[11px] uppercase tracking-widest font-medium text-dark/70"
+        >
+          <a href="index.html" class="hover:text-main transition-colors"
+            >Home</a
+          >
+          <a href="about.html" class="hover:text-main transition-colors"
+            >About</a
+          >
+          <a href="gallery.html" class="hover:text-main transition-colors"
+            >Gallery</a
+          >
+          <a href="contact.html" class="hover:text-main transition-colors"
+            >Contact</a
+          >
         </div>
+      </div>
     </header>
 
     <!-- Main Content -->
     <main class="flex-grow pt-48 pb-24">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="mb-12 fade-up">
+          <ol
+            class="flex items-center space-x-2 font-main text-[10px] uppercase tracking-widest text-dark/40"
+          >
+            <li>
+              <a href="index.html" class="hover:text-main transition-colors"
+                >Home</a
+              >
+            </li>
+            <li aria-hidden="true"><span class="mx-1">/</span></li>
+            <li>
+              <span class="text-dark/70" aria-current="page">Contact</span>
+            </li>
+          </ol>
+        </nav>
 
-            <!-- Breadcrumb -->
-            <nav aria-label="Breadcrumb" class="mb-12 fade-up">
-                <ol class="flex items-center space-x-2 font-main text-[10px] uppercase tracking-widest text-dark/40">
-                    <li><a href="index.html" class="hover:text-main transition-colors">Home</a></li>
-                    <li aria-hidden="true"><span class="mx-1">/</span></li>
-                    <li><span class="text-dark/70" aria-current="page">Contact</span></li>
-                </ol>
-            </nav>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
-                
-                <!-- Contact Form -->
-                <div class="flex flex-col justify-center fade-up">
-                    <p class="font-main text-[11px] tracking-[0.3em] uppercase text-dark/60 mb-4">Inquiries</p>
-                    <h1 class="font-display text-6xl md:text-8xl text-dark leading-none mb-8">Let's Create<br>Something<br>Beautiful.</h1>
-                    <p class="font-main text-sm md:text-base text-dark/80 leading-relaxed max-w-sm mb-12">
-                        Available for weddings, portraits, and editorial commissions. Based in Waterloo, Ontario, Canada — serving the GTA and Waterloo Region.
-                    </p>
-                    
-                    <form id="contact-form" class="space-y-8 w-full max-w-sm" novalidate aria-label="Photography booking inquiry form">
-                        <div class="relative">
-                            <input type="text" id="user_name" name="user_name" required autocomplete="name" class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer" placeholder=" ">
-                            <label for="user_name" class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text">Name *</label>
-                        </div>
-                        <div class="relative">
-                            <input type="email" id="user_email" name="user_email" required autocomplete="email" class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer" placeholder=" ">
-                            <label for="user_email" class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text">Email *</label>
-                        </div>
-                        <div class="relative">
-                            <input type="tel" id="user_phone" name="user_phone" autocomplete="tel" class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer" placeholder=" ">
-                            <label for="user_phone" class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text">Phone (Optional)</label>
-                        </div>
-                        <div class="relative">
-                            <input type="text" id="subject" name="subject" required class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer" placeholder=" ">
-                            <label for="subject" class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text">Subject / Event Type *</label>
-                        </div>
-                        <div class="relative mt-8">
-                            <textarea id="message" name="message" required rows="3" class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer resize-none" placeholder=" "></textarea>
-                            <label for="message" class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text">Message *</label>
-                        </div>
-                        
-                        <div id="form-feedback" class="hidden text-[10px] uppercase tracking-widest font-medium py-3 px-4 rounded-md border text-center transition-all mb-4" role="alert" aria-live="polite"></div>
-                        
-                        <button type="submit" id="submit-btn" class="premium-btn bg-dark text-white px-10 py-4 text-[10px] uppercase tracking-widest font-medium w-full mt-4 flex items-center justify-center space-x-2">
-                            <span>Send via WhatsApp</span>
-                            <i class="fab fa-whatsapp text-lg" aria-hidden="true"></i>
-                        </button>
-                    </form>
-                </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32">
+          <!-- Contact Form -->
+          <div class="flex flex-col justify-center fade-up">
+            <p
+              class="font-main text-[11px] tracking-[0.3em] uppercase text-dark/60 mb-4"
+            >
+              Inquiries
+            </p>
+            <h1
+              class="font-display text-6xl md:text-8xl text-dark leading-none mb-8"
+            >
+              Let's Create<br />Something<br />Beautiful.
+            </h1>
+            <p
+              class="font-main text-sm md:text-base text-dark/80 leading-relaxed max-w-sm mb-12"
+            >
+              Available for special events, portraits, and editorial
+              commissions. Based in Waterloo, Ontario, Canada — serving the GTA
+              and Waterloo Region.
+            </p>
 
-                <!-- Contact Details + FAQ + Map -->
-                <div class="flex flex-col justify-start space-y-10 fade-up" style="transition-delay: 200ms;">
-                    
-                    <div>
-                        <h2 class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-2">Email</h2>
-                        <a href="mailto:Mail2suryacapturra@gmail.com" class="contact-link font-display text-2xl md:text-3xl break-all hover:text-main transition-colors">
-                            Mail2suryacapturra@gmail.com
-                        </a>
-                    </div>
+            <form
+              id="contact-form"
+              class="space-y-8 w-full max-w-sm"
+              novalidate
+              aria-label="Photography booking inquiry form"
+            >
+              <div class="relative">
+                <input
+                  type="text"
+                  id="user_name"
+                  name="user_name"
+                  required
+                  autocomplete="name"
+                  class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer"
+                  placeholder=" "
+                />
+                <label
+                  for="user_name"
+                  class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text"
+                  >Name *</label
+                >
+              </div>
+              <div class="relative">
+                <input
+                  type="email"
+                  id="user_email"
+                  name="user_email"
+                  required
+                  autocomplete="email"
+                  class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer"
+                  placeholder=" "
+                />
+                <label
+                  for="user_email"
+                  class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text"
+                  >Email *</label
+                >
+              </div>
+              <div class="relative">
+                <input
+                  type="tel"
+                  id="user_phone"
+                  name="user_phone"
+                  autocomplete="tel"
+                  class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer"
+                  placeholder=" "
+                />
+                <label
+                  for="user_phone"
+                  class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text"
+                  >Phone (Optional)</label
+                >
+              </div>
+              <div class="relative">
+                <input
+                  type="text"
+                  id="subject"
+                  name="subject"
+                  required
+                  class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer"
+                  placeholder=" "
+                />
+                <label
+                  for="subject"
+                  class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text"
+                  >Subject / Event Type *</label
+                >
+              </div>
+              <div class="relative mt-8">
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows="3"
+                  class="w-full bg-transparent border-b border-dark/20 py-2 text-dark focus:outline-none focus:border-main transition-colors peer resize-none"
+                  placeholder=" "
+                ></textarea>
+                <label
+                  for="message"
+                  class="absolute left-0 top-2 text-[10px] uppercase tracking-widest text-dark/50 transition-all peer-focus:-top-4 peer-focus:text-[8px] peer-focus:text-main peer-[:not(:placeholder-shown)]:-top-4 peer-[:not(:placeholder-shown)]:text-[8px] cursor-text"
+                  >Message *</label
+                >
+              </div>
 
-                    <div>
-                        <h2 class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-2">Phone / WhatsApp</h2>
-                        <a href="tel:+14375997965" class="contact-link font-display text-3xl md:text-4xl hover:text-main transition-colors">
-                            +1 437-599-7965
-                        </a>
-                    </div>
+              <div
+                id="form-feedback"
+                class="hidden text-[10px] uppercase tracking-widest font-medium py-3 px-4 rounded-md border text-center transition-all mb-4"
+                role="alert"
+                aria-live="polite"
+              ></div>
 
-                    <div>
-                        <h2 class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-2">Studio Location</h2>
-                        <address class="not-italic font-display text-2xl md:text-3xl text-dark">
-                            Waterloo, Ontario, Canada
-                        </address>
-                        <p class="font-main text-[10px] uppercase tracking-widest text-dark/40 mt-2">
-                            Serving: Waterloo · Kitchener · Cambridge · GTA
-                        </p>
-                    </div>
+              <button
+                type="submit"
+                id="submit-btn"
+                class="premium-btn bg-dark text-white px-10 py-4 text-[10px] uppercase tracking-widest font-medium w-full mt-4 flex items-center justify-center space-x-2"
+              >
+                <span>Send via WhatsApp</span>
+                <i class="fab fa-whatsapp text-lg" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
 
-                    <div class="pt-4 border-t border-dark/10">
-                        <h2 class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-6">Connect</h2>
-                        <div class="flex space-x-8">
-                            <a href="https://www.instagram.com/collabwithsurya?igsh=bWg0N2hnZHMwbHFk&utm_source=qr" class="text-dark hover:text-main transition-colors text-2xl" target="_blank" rel="noopener noreferrer" aria-label="Follow Surya Photography on Instagram @collabwithsurya"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                            <a href="https://www.instagram.com/suriyaa.ca?igsh=MTdmY2tucTdjenJjdw%3D%3D&utm_source=qr" class="text-dark hover:text-main transition-colors text-2xl" target="_blank" rel="noopener noreferrer" aria-label="Follow on Instagram @suriyaa.ca"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                            <a href="https://wa.me/14375997965" class="text-dark hover:text-highlight transition-colors text-2xl" target="_blank" rel="noopener noreferrer" aria-label="Chat with Surya Photography on WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-
-                    <!-- Google Maps Embed (GEO signal) -->
-                    <div class="pt-4">
-                        <h2 class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-4">Find Us</h2>
-                        <div class="w-full rounded-xl overflow-hidden border border-dark/10">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46352.68534566756!2d-80.56779834179687!3d43.466842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882bf3f7d8f3c8d7%3A0x923e55fdcc5a3f6!2sWaterloo%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sca!4v1688000000000!5m2!1sen!2sca"
-                                width="100%"
-                                height="220"
-                                style="border:0;"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="Surya Photography location — Waterloo, Ontario, Canada"
-                                aria-label="Map showing Waterloo, Ontario, Canada — location of Surya Photography">
-                            </iframe>
-                        </div>
-                    </div>
-
-                </div>
+          <!-- Contact Details + FAQ + Map -->
+          <div
+            class="flex flex-col justify-start space-y-10 fade-up"
+            style="transition-delay: 200ms"
+          >
+            <div>
+              <h2
+                class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-2"
+              >
+                Email
+              </h2>
+              <a
+                href="mailto:Mail2suryacapturra@gmail.com"
+                class="contact-link font-display text-2xl md:text-3xl break-all hover:text-main transition-colors"
+              >
+                Mail2suryacapturra@gmail.com
+              </a>
             </div>
 
-            <!-- FAQ Section (Visible — AEO rich content) -->
-            <section class="mt-24 fade-up" aria-labelledby="faq-heading">
-                <div class="max-w-3xl mx-auto">
-                    <p class="font-main text-[11px] tracking-[0.3em] uppercase text-dark/60 mb-4 text-center">Common Questions</p>
-                    <h2 id="faq-heading" class="font-display text-4xl text-dark mb-12 text-center">Frequently Asked Questions</h2>
+            <div>
+              <h2
+                class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-2"
+              >
+                Phone / WhatsApp
+              </h2>
+              <a
+                href="tel:+14375997965"
+                class="contact-link font-display text-3xl md:text-4xl hover:text-main transition-colors"
+              >
+                +1 437-599-7965
+              </a>
+            </div>
 
-                    <div class="space-y-0 divide-y divide-dark/10" id="faq-list">
+            <div>
+              <h2
+                class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-2"
+              >
+                Studio Location
+              </h2>
+              <address
+                class="not-italic font-display text-2xl md:text-3xl text-dark"
+              >
+                Waterloo, Ontario, Canada
+              </address>
+              <p
+                class="font-main text-[10px] uppercase tracking-widest text-dark/40 mt-2"
+              >
+                Serving: Waterloo · Kitchener · Cambridge · GTA
+              </p>
+            </div>
 
-                        <details class="group py-6 cursor-pointer">
-                            <summary class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center">
-                                <span>What photography services do you offer?</span>
-                                <i class="fas fa-plus text-main text-xs group-open:hidden" aria-hidden="true"></i>
-                                <i class="fas fa-minus text-main text-xs hidden group-open:block" aria-hidden="true"></i>
-                            </summary>
-                            <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
-                                Surya Photography offers wedding photography, portrait photography, maternity photography, cultural event photography, and lifestyle photography — all in Waterloo, Ontario and across the Greater Toronto Area.
-                            </p>
-                        </details>
+            <div class="pt-4 border-t border-dark/10">
+              <h2
+                class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-6"
+              >
+                Connect
+              </h2>
+              <div class="flex space-x-8">
+                <a
+                  href="https://www.instagram.com/collabwithsurya?igsh=bWg0N2hnZHMwbHFk&utm_source=qr"
+                  class="text-dark hover:text-main transition-colors text-2xl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow Surya Photography on Instagram @collabwithsurya"
+                  ><i class="fab fa-instagram" aria-hidden="true"></i
+                ></a>
+                <a
+                  href="https://www.instagram.com/suriyaa.ca?igsh=MTdmY2tucTdjenJjdw%3D%3D&utm_source=qr"
+                  class="text-dark hover:text-main transition-colors text-2xl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow on Instagram @suriyaa.ca"
+                  ><i class="fab fa-instagram" aria-hidden="true"></i
+                ></a>
+                <a
+                  href="https://wa.me/14375997965"
+                  class="text-dark hover:text-highlight transition-colors text-2xl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Chat with Surya Photography on WhatsApp"
+                  ><i class="fab fa-whatsapp" aria-hidden="true"></i
+                ></a>
+              </div>
+            </div>
 
-                        <details class="group py-6 cursor-pointer">
-                            <summary class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center">
-                                <span>Where are you located and do you travel?</span>
-                                <i class="fas fa-plus text-main text-xs group-open:hidden" aria-hidden="true"></i>
-                                <i class="fas fa-minus text-main text-xs hidden group-open:block" aria-hidden="true"></i>
-                            </summary>
-                            <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
-                                We are based in Waterloo, Ontario, Canada. We serve clients across Kitchener, Cambridge, Toronto, and the entire Greater Toronto Area. Destination photography is also available upon request.
-                            </p>
-                        </details>
-
-                        <details class="group py-6 cursor-pointer">
-                            <summary class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center">
-                                <span>How do I book a session?</span>
-                                <i class="fas fa-plus text-main text-xs group-open:hidden" aria-hidden="true"></i>
-                                <i class="fas fa-minus text-main text-xs hidden group-open:block" aria-hidden="true"></i>
-                            </summary>
-                            <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
-                                Simply fill out the form on this page, send us a WhatsApp message at <a href="https://wa.me/14375997965" class="text-main hover:underline">+1 437-599-7965</a>, or email us at <a href="mailto:Mail2suryacapturra@gmail.com" class="text-main hover:underline">Mail2suryacapturra@gmail.com</a>. We respond within 24 hours.
-                            </p>
-                        </details>
-
-                        <details class="group py-6 cursor-pointer">
-                            <summary class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center">
-                                <span>What languages do you speak?</span>
-                                <i class="fas fa-plus text-main text-xs group-open:hidden" aria-hidden="true"></i>
-                                <i class="fas fa-minus text-main text-xs hidden group-open:block" aria-hidden="true"></i>
-                            </summary>
-                            <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
-                                We are fluent in English and Tamil, making us an ideal choice for South Asian weddings and cultural events across Ontario.
-                            </p>
-                        </details>
-
-                        <details class="group py-6 cursor-pointer">
-                            <summary class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center">
-                                <span>How much does a session cost?</span>
-                                <i class="fas fa-plus text-main text-xs group-open:hidden" aria-hidden="true"></i>
-                                <i class="fas fa-minus text-main text-xs hidden group-open:block" aria-hidden="true"></i>
-                            </summary>
-                            <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
-                                Pricing varies by session type, duration, and location. Contact us directly for a personalized quote — we offer packages to suit different budgets and needs.
-                            </p>
-                        </details>
-
-                    </div>
-                </div>
-            </section>
-
+            <!-- Google Maps Embed (GEO signal) -->
+            <div class="pt-4">
+              <h2
+                class="font-main text-[10px] tracking-[0.3em] uppercase text-dark/40 mb-4"
+              >
+                Find Us
+              </h2>
+              <div
+                class="w-full rounded-xl overflow-hidden border border-dark/10"
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46352.68534566756!2d-80.56779834179687!3d43.466842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882bf3f7d8f3c8d7%3A0x923e55fdcc5a3f6!2sWaterloo%2C%20ON%2C%20Canada!5e0!3m2!1sen!2sca!4v1688000000000!5m2!1sen!2sca"
+                  width="100%"
+                  height="220"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  title="Surya Photography location — Waterloo, Ontario, Canada"
+                  aria-label="Map showing Waterloo, Ontario, Canada — location of Surya Photography"
+                >
+                </iframe>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- FAQ Section (Visible — AEO rich content) -->
+        <section class="mt-24 fade-up" aria-labelledby="faq-heading">
+          <div class="max-w-3xl mx-auto">
+            <p
+              class="font-main text-[11px] tracking-[0.3em] uppercase text-dark/60 mb-4 text-center"
+            >
+              Common Questions
+            </p>
+            <h2
+              id="faq-heading"
+              class="font-display text-4xl text-dark mb-12 text-center"
+            >
+              Frequently Asked Questions
+            </h2>
+
+            <div class="space-y-0 divide-y divide-dark/10" id="faq-list">
+              <details class="group py-6 cursor-pointer">
+                <summary
+                  class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center"
+                >
+                  <span>What photography services do you offer?</span>
+                  <i
+                    class="fas fa-plus text-main text-xs group-open:hidden"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fas fa-minus text-main text-xs hidden group-open:block"
+                    aria-hidden="true"
+                  ></i>
+                </summary>
+                <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
+                  Surya Photography offers event photography, portrait
+                  photography, maternity photography, and lifestyle photography
+                  — all in Waterloo, Ontario and across the Greater Toronto
+                  Area.
+                </p>
+              </details>
+
+              <details class="group py-6 cursor-pointer">
+                <summary
+                  class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center"
+                >
+                  <span>Where are you located and do you travel?</span>
+                  <i
+                    class="fas fa-plus text-main text-xs group-open:hidden"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fas fa-minus text-main text-xs hidden group-open:block"
+                    aria-hidden="true"
+                  ></i>
+                </summary>
+                <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
+                  We are based in Waterloo, Ontario, Canada. We serve clients
+                  across Kitchener, Cambridge, Toronto, and the entire Greater
+                  Toronto Area. Destination photography is also available upon
+                  request.
+                </p>
+              </details>
+
+              <details class="group py-6 cursor-pointer">
+                <summary
+                  class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center"
+                >
+                  <span>How do I book a session?</span>
+                  <i
+                    class="fas fa-plus text-main text-xs group-open:hidden"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fas fa-minus text-main text-xs hidden group-open:block"
+                    aria-hidden="true"
+                  ></i>
+                </summary>
+                <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
+                  Simply fill out the form on this page, send us a WhatsApp
+                  message at
+                  <a
+                    href="https://wa.me/14375997965"
+                    class="text-main hover:underline"
+                    >+1 437-599-7965</a
+                  >, or email us at
+                  <a
+                    href="mailto:Mail2suryacapturra@gmail.com"
+                    class="text-main hover:underline"
+                    >Mail2suryacapturra@gmail.com</a
+                  >. We respond within 24 hours.
+                </p>
+              </details>
+
+              <details class="group py-6 cursor-pointer">
+                <summary
+                  class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center"
+                >
+                  <span>What languages do you speak?</span>
+                  <i
+                    class="fas fa-plus text-main text-xs group-open:hidden"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fas fa-minus text-main text-xs hidden group-open:block"
+                    aria-hidden="true"
+                  ></i>
+                </summary>
+                <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
+                  We are fluent in English and Tamil, making us an ideal choice
+                  for South Asian celebrations and cultural events across
+                  Ontario.
+                </p>
+              </details>
+
+              <details class="group py-6 cursor-pointer">
+                <summary
+                  class="font-main text-sm uppercase tracking-widest text-dark list-none flex justify-between items-center"
+                >
+                  <span>How much does a session cost?</span>
+                  <i
+                    class="fas fa-plus text-main text-xs group-open:hidden"
+                    aria-hidden="true"
+                  ></i>
+                  <i
+                    class="fas fa-minus text-main text-xs hidden group-open:block"
+                    aria-hidden="true"
+                  ></i>
+                </summary>
+                <p class="font-main text-sm text-dark/70 leading-relaxed mt-4">
+                  Pricing varies by session type, duration, and location.
+                  Contact us directly for a personalized quote — we offer
+                  packages to suit different budgets and needs.
+                </p>
+              </details>
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-white border-t border-dark/5 pt-12 pb-12 mt-auto">
-        <div class="max-w-4xl mx-auto px-4 text-center fade-up">
-            <!-- NAP: Name Address Phone — Local SEO -->
-            <address class="not-italic font-main text-[10px] tracking-widest uppercase text-dark/50 mb-8 space-y-1">
-                <p>Surya Photography · Waterloo, Ontario, Canada</p>
-                <p><a href="tel:+14375997965" class="hover:text-main transition-colors">+1 437-599-7965</a> &nbsp;·&nbsp; <a href="mailto:Mail2suryacapturra@gmail.com" class="hover:text-main transition-colors">Mail2suryacapturra@gmail.com</a></p>
-                <p>Serving Waterloo · Kitchener · Cambridge · Greater Toronto Area</p>
-            </address>
-            <div class="text-[9px] uppercase tracking-[0.3em] text-dark/40 flex items-center justify-center space-x-4">
-                <span>© <span id="footer-year"></span> Surya Photography</span>
-                <span class="w-1 h-1 rounded-full bg-main" aria-hidden="true"></span>
-                <span>All Rights Reserved</span>
-            </div>
+      <div class="max-w-4xl mx-auto px-4 text-center fade-up">
+        <!-- NAP: Name Address Phone — Local SEO -->
+        <address
+          class="not-italic font-main text-[10px] tracking-widest uppercase text-dark/50 mb-8 space-y-1"
+        >
+          <p>Surya Photography · Waterloo, Ontario, Canada</p>
+          <p>
+            <a href="tel:+14375997965" class="hover:text-main transition-colors"
+              >+1 437-599-7965</a
+            >
+            &nbsp;·&nbsp;
+            <a
+              href="mailto:Mail2suryacapturra@gmail.com"
+              class="hover:text-main transition-colors"
+              >Mail2suryacapturra@gmail.com</a
+            >
+          </p>
+          <p>Serving Waterloo · Kitchener · Cambridge · Greater Toronto Area</p>
+        </address>
+        <div
+          class="text-[9px] uppercase tracking-[0.3em] text-dark/40 flex items-center justify-center space-x-4"
+        >
+          <span>© <span id="footer-year"></span> Surya Photography</span>
+          <span class="w-1 h-1 rounded-full bg-main" aria-hidden="true"></span>
+          <span>All Rights Reserved</span>
         </div>
+      </div>
     </footer>
 
     <!-- Floating Scroll Coin -->
-    <div class="coin-container fixed bottom-8 right-8 w-20 h-20 md:w-24 md:h-24 z-50 rounded-full pointer-events-none drop-shadow-xl" aria-hidden="true">
-        <div class="coin-inner w-full h-full relative" id="scroll-coin">
-            <div class="coin-face absolute inset-0 rounded-full overflow-hidden border-2 border-white">
-                <img src="assets/images/logo1 (1).jpeg" alt="Surya Photography Logo" class="w-full h-full object-cover">
-            </div>
-            <div class="coin-face coin-back absolute inset-0 rounded-full overflow-hidden border-2 border-white">
-                <img src="assets/images/logo1 (2).jpeg" alt="Surya Photography Logo" class="w-full h-full object-cover">
-            </div>
+    <div
+      class="coin-container fixed bottom-8 right-8 w-20 h-20 md:w-24 md:h-24 z-50 rounded-full pointer-events-none drop-shadow-xl"
+      aria-hidden="true"
+    >
+      <div class="coin-inner w-full h-full relative" id="scroll-coin">
+        <div
+          class="coin-face absolute inset-0 rounded-full overflow-hidden border-2 border-white"
+        >
+          <img
+            src="assets/images/web/logo1 (1).webp"
+            alt="Surya Photography Logo"
+            class="w-full h-full object-cover"
+          />
         </div>
+        <div
+          class="coin-face coin-back absolute inset-0 rounded-full overflow-hidden border-2 border-white"
+        >
+          <img
+            src="assets/images/web/logo1 (2).webp"
+            alt="Surya Photography Logo"
+            class="w-full h-full object-cover"
+          />
+        </div>
+      </div>
     </div>
 
     <!-- WhatsApp Sticky Button -->
-    <a href="https://wa.me/14375997965?text=Hello%20Surya%20Photography,%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" aria-label="Chat with Surya Photography on WhatsApp" class="fixed bottom-8 left-8 w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_10px_rgba(37,211,102,0.4)] hover:scale-110 hover:shadow-[0_8px_20px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group">
-        <i class="fab fa-whatsapp" aria-hidden="true"></i>
-        <span class="absolute left-full ml-4 px-3 py-2 bg-white text-dark text-xs font-main tracking-widest uppercase rounded shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none" aria-hidden="true">Chat with us</span>
+    <a
+      href="https://wa.me/14375997965?text=Hello%20Surya%20Photography,%20I%20would%20like%20to%20inquire%20about%20your%20services."
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with Surya Photography on WhatsApp"
+      class="fixed bottom-8 left-8 w-14 h-14 md:w-16 md:h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_10px_rgba(37,211,102,0.4)] hover:scale-110 hover:shadow-[0_8px_20px_rgba(37,211,102,0.6)] transition-all duration-300 z-50 group"
+    >
+      <i class="fab fa-whatsapp" aria-hidden="true"></i>
+      <span
+        class="absolute left-full ml-4 px-3 py-2 bg-white text-dark text-xs font-main tracking-widest uppercase rounded shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none"
+        aria-hidden="true"
+        >Chat with us</span
+      >
     </a>
 
     <script src="js/animations.js" defer></script>
     <script src="js/main.js" defer></script>
     <script src="js/contact.js" defer></script>
-</body>
+    <script type="module" src="js/faq.js"></script>
+  </body>
 </html>

@@ -1,84 +1,150 @@
 /* 3D Coin Logo */
-.coin-container { perspective: 1000px; }
-.coin-inner { transform-style: preserve-3d; transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94); border-radius: 50%; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 0 0 20px rgba(253, 0, 83, 0.15); }
-.coin-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-.coin-back { transform: rotateY(180deg); }
+.coin-container {
+  perspective: 1000px;
+}
+.coin-inner {
+  transform-style: preserve-3d;
+  transition: transform 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 50%;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(253, 0, 83, 0.15);
+}
+.coin-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.coin-back {
+  transform: rotateY(180deg);
+}
 
 /* Bento Grid Item Styles */
 .bento-item {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    border-radius: 0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.5s ease;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.5s ease;
 }
 .bento-item:hover {
-    transform: scale(0.98);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: scale(0.98);
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 .bento-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
 }
 .bento-item:hover img {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
-.overlay { position: absolute; inset: 0; background-color: rgba(43, 32, 36, 0.1); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; }
-.bento-item:hover .overlay { opacity: 1; }
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(43, 32, 36, 0.1);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.bento-item:hover .overlay {
+  opacity: 1;
+}
 
 /* Navigation Underline */
-.nav-link { position: relative; }
-.nav-link::after { content: ''; position: absolute; width: 0; height: 1px; bottom: -4px; left: 50%; transform: translateX(-50%); background-color: #fd0053; transition: width 0.4s ease; }
-.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fd0053;
+  transition: width 0.4s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
 
 /* Premium CTA Buttons */
-.premium-btn { 
-    position: relative; 
-    overflow: hidden; 
-    border-radius: 9999px;
-    box-shadow: 0 10px 25px -5px rgba(253, 0, 83, 0.4), 0 8px 10px -6px rgba(253, 0, 83, 0.2);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translateY(0) scale(1);
+.premium-btn {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  box-shadow:
+    0 10px 25px -5px rgba(253, 0, 83, 0.4),
+    0 8px 10px -6px rgba(253, 0, 83, 0.2);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(0) scale(1);
 }
-.premium-btn:hover { 
-    transform: translateY(-5px) scale(1.05); 
-    box-shadow: 0 20px 30px -10px rgba(253, 0, 83, 0.6), 0 15px 15px -10px rgba(253, 0, 83, 0.3);
+.premium-btn:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow:
+    0 20px 30px -10px rgba(253, 0, 83, 0.6),
+    0 15px 15px -10px rgba(253, 0, 83, 0.3);
 }
 .premium-btn:active {
-    transform: translateY(2px) scale(0.95);
-    transition: all 0.1s;
-    box-shadow: 0 5px 10px -5px rgba(253, 0, 83, 0.4);
+  transform: translateY(2px) scale(0.95);
+  transition: all 0.1s;
+  box-shadow: 0 5px 10px -5px rgba(253, 0, 83, 0.4);
 }
-.premium-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); transition: left 0.7s ease; }
-.premium-btn:hover::before { left: 100%; }
+.premium-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+.premium-btn:hover::before {
+  left: 100%;
+}
 
 /* Gallery Filter Buttons */
 .filter-btn {
-    position: relative;
-    border-radius: 9999px;
-    border: 1px solid rgba(43, 32, 36, 0.1);
-    padding: 8px 20px;
-    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background-color: transparent;
-    color: rgba(43, 32, 36, 0.7);
-    white-space: nowrap;
+  position: relative;
+  border-radius: 9999px;
+  border: 1px solid rgba(43, 32, 36, 0.1);
+  padding: 8px 20px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: transparent;
+  color: rgba(43, 32, 36, 0.7);
+  white-space: nowrap;
 }
 @media (min-width: 768px) {
-    .filter-btn { padding: 12px 28px; }
+  .filter-btn {
+    padding: 12px 28px;
+  }
 }
 .filter-btn:hover {
-    border-color: #fd0053;
-    color: #fd0053;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(253, 0, 83, 0.15);
+  border-color: #fd0053;
+  color: #fd0053;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(253, 0, 83, 0.15);
 }
 .filter-btn.active {
-    background-color: #fd0053;
-    border-color: #fd0053;
-    color: white;
-    box-shadow: 0 8px 15px -5px rgba(253, 0, 83, 0.4);
-    transform: scale(1.05);
+  background-color: #fd0053;
+  border-color: #fd0053;
+  color: white;
+  box-shadow: 0 8px 15px -5px rgba(253, 0, 83, 0.4);
+  transform: scale(1.05);
 }

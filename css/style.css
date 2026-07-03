@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Brittany Signature Script";
+  src: url("../assets/fonts/brittany-signature-script/BrittanySignatureScript.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Erigo";
   src:
     url("../assets/fonts/Erigo.woff2") format("woff2"),
@@ -37,7 +45,7 @@ body {
   color: #2b2024;
 }
 .animate-logo {
-  font-family: "Erigo", sans-serif !important;
+  font-family: "Brittany Signature Script", sans-serif !important;
 }
 
 /* Hide scrollbar for horizontal lists */
